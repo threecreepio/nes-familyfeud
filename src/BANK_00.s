@@ -264,7 +264,8 @@ StageDrawCashDisplays:
   LDA BCDOutput+4                                      ;    228 8228 C AD C2 04        F:006105
   LDX #$10                                        ;    22B 822B C A2 10           F:006105
   JSR DrawSingleCashCharacter                                    ;    22D 822D C 20 33 82        F:006105
-  JMP PPUCTRLSetWriteHorizontal                                    ;    230 8230 C 4C E3 99        F:006105
+  jmp StageDrawCashDisplaysEx
+  ;;JMP PPUCTRLSetWriteHorizontal                                    ;    230 8230 C 4C E3 99        F:006105
 
 DrawSingleCashCharacter:
   CMP #$20                                        ;    233 8233 C C9 20           F:006105
@@ -8616,7 +8617,8 @@ B_2_476A:
   BCS B_2_476A                                    ;   4775 C775 C B0 F3           F:000336
 
 RunMainMenuScene:
-  JSR PPUHideAll                                    ;   4777 C777 C 20 CC 99        F:006005
+  JSR RunMainMenuSceneEx                                    ;   4777 C777 C 20 CC 99        F:006005
+  ;;JSR PPUHideAll                                    ;   4777 C777 C 20 CC 99        F:006005
   JSR PPUMASKHideBackground                                    ;   477A C77A C 20 A4 99        F:006005
   JSR PPUMASKHideSprites                                    ;   477D C77D C 20 B2 99        F:006005
   LDX #$1                                         ;   4780 C780 C A2 01           F:006005
@@ -8669,7 +8671,8 @@ RunMainMenuScene:
   JSR PPUMASKShowSprites                                    ;   47F5 C7F5 C 20 B9 99        F:006018
 B_2_47F8:
   JSR DelayUntilNMI                                    ;   47F8 C7F8 C 20 F9 CA        F:006018
-  JSR SoundSystemUpdate                                    ;   47FB C7FB C 20 96 BA        F:006019
+  JSR RunMainMenuScene2Ex                                    ;   47F8 C7F8 C 20 F9 CA        F:006018
+  ;;JSR SoundSystemUpdate                                    ;   47FB C7FB C 20 96 BA        F:006019
   JSR JoypadHasChanged                                    ;   47FE C7FE C 20 1C 9B        F:006019
   BCS B_2_47F8                                    ;   4801 C801 C B0 F5           F:006019
   LDA JoypadBoth                                      ;   4803 C803 C A5 15           F:007361
@@ -14421,17 +14424,73 @@ B_3_7FA3:
   LDA R_000E                                      ;   7FA3 FFA3 C A5 0E           F:009583
   RTS                                             ;   7FA5 FFA5 C 60              F:009583
 
-.byte $CD,$20,$00,$A0,$00,$9A,$F0,$FE             ;   7FA6 FFA6 ........ ? ?????? 
-.byte $1D,$F0,$47,$01,$D0,$1C,$56,$01             ;   7FAE FFAE ........ ??G???V? 
-.byte $D0,$1C,$BF,$05,$D0,$1C,$D0,$1C             ;   7FB6 FFB6 ........ ???????? 
-.byte $01,$01,$01,$00,$02,$03,$04,$FF             ;   7FBE FFBE ........ ???????? 
-.byte $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF             ;   7FC6 FFC6 ........ ???????? 
-.byte $FF,$FF,$FF,$FF,$9E,$24,$CA,$FF             ;   7FCE FFCE ........ ?????$?? 
-.byte $AF,$24,$14,$00,$18,$00,$AF,$24             ;   7FD6 FFD6 ........ ?$?????$ 
-.byte $FF,$FF,$FF,$FF,$00,$00,$00,$00             ;   7FDE FFDE ........ ???????? 
-.byte $00,$00,$00,$00,$00,$00,$00,$00             ;   7FE6 FFE6 ........ ???????? 
-.byte $00,$00,$00,$00,$00,$00,$00,$00             ;   7FEE FFEE ........ ???????? 
-.byte $CD,$21,$CB,$00                             ;   7FF6 FFF6 ....     ?!??     
+RunMainMenuSceneEx:
+  lda #$20
+  sta RNG1
+  lda #$20
+  sta RNG2
+  lda #$20
+  sta RNG3
+  jmp PPUHideAll
+
+RunMainMenuScene2Ex:
+  inc $620
+  jmp SoundSystemUpdate
+
+StageDrawCashDisplaysEx:
+  ldx #0
+  lda $620
+@Next100:
+  inx
+  sec
+  sbc #100
+  bcs @Next100
+@Done100:
+  stx $0
+  ldx #0
+  adc #100
+@Next10:
+  inx
+  sec
+  sbc #10
+  bcs @Next10
+@Done10:
+  stx $1
+  adc #10
+  sta $2
+  
+  clc
+  ldx #4
+  adc #'0'
+  jsr DrawSingleCashCharacter
+
+  clc
+  ldx #0
+  lda $0
+  adc #'0'-1
+  jsr DrawSingleCashCharacter
+
+  clc
+  ldx #2
+  lda $1
+  adc #'0'-1
+  jsr DrawSingleCashCharacter
+
+
+  jmp PPUCTRLSetWriteHorizontal
+
+
+;;.byte $CD,$20,$00,$A0,$00,$9A,$F0,$FE             ;   7FA6 FFA6 ........ ? ?????? 
+;;.byte $1D,$F0,$47,$01,$D0,$1C,$56,$01             ;   7FAE FFAE ........ ??G???V? 
+;;.byte $D0,$1C,$BF,$05,$D0,$1C,$D0,$1C             ;   7FB6 FFB6 ........ ???????? 
+;;.byte $01,$01,$01,$00,$02,$03,$04,$FF             ;   7FBE FFBE ........ ???????? 
+;;.byte $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF             ;   7FC6 FFC6 ........ ???????? 
+;;.byte $FF,$FF,$FF,$FF,$9E,$24,$CA,$FF             ;   7FCE FFCE ........ ?????$?? 
+;;.byte $AF,$24,$14,$00,$18,$00,$AF,$24             ;   7FD6 FFD6 ........ ?$?????$ 
+;;.byte $FF,$FF,$FF,$FF,$00,$00,$00,$00             ;   7FDE FFDE ........ ???????? 
+;;.byte $00,$00,$00,$00,$00,$00,$00,$00             ;   7FE6 FFE6 ........ ???????? 
+;;.byte $00,$00,$00,$00,$00,$00,$00,$00             ;   7FEE FFEE ........ ???????? 
+;;.byte $CD,$21,$CB,$00                             ;   7FF6 FFF6 ....     ?!??     
 
 .res $FFFA-*,$00
 .addr VNMI                                    ;   7FFA FFFA N 5E CA
