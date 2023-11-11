@@ -2817,7 +2817,7 @@ L_0_16D5:
   LDA R_0048,X                                    ;   16D7 96D7 C B5 48           F:006319
   CMP #$5B                                        ;   16D9 96D9 C C9 5B           F:006319
   BNE L_0_16E3                                    ;   16DB 96DB C D0 06           F:006319
-  LDY R_0047,X                                    ;   16DD 96DD C B4 47           F:006442
+  LDY ValidationAnswerCopy-1,X                                    ;   16DD 96DD C B4 47           F:006442
   BPL L_0_16E3                                    ;   16DF 96DF C 10 02           F:006442
   LDA #$5C                                        ;   16E1 96E1 C A9 5C           F:006454
 L_0_16E3:
@@ -3576,13 +3576,13 @@ B_0_1BEE:
   CPX #$FF                                        ;   1BFF 9BFF C E0 FF           F:009582
   BEQ B_0_1C1D                                    ;   1C01 9C01 C F0 1A           F:009582
   STX R_00E9                                      ;   1C03 9C03 C 86 E9           F:009582
-  JSR L_3_7F73                                    ;   1C05 9C05 C 20 73 FF        F:009582
+  JSR AutocompleteAnswer                                    ;   1C05 9C05 C 20 73 FF        F:009582
   LDX R_00E9                                      ;   1C08 9C08 C A6 E9           F:009583
   JMP B_0_1C1D                                    ;   1C0A 9C0A C 4C 1D 9C        F:009583
 
 B_0_1C0D:
   LDA #$FF                                        ;   1C0D 9C0D C A9 FF           F:008943
-  JSR L_3_78F6                                    ;   1C0F 9C0F C 20 F6 F8        F:008943
+  JSR BeginAnswerValidation                                    ;   1C0F 9C0F C 20 F6 F8        F:008943
 B_0_1C12:
   JSR DelayUntilNMI                                    ;   1C12 9C12 C 20 F9 CA        F:008943
   JSR SoundSystemUpdate                                    ;   1C15 9C15 C 20 96 BA        F:008944
@@ -3596,7 +3596,7 @@ B_0_1C1D:
   BNE B_0_1C3C                                    ;   1C27 9C27 C D0 13           F:009583
   TXA                                             ;   1C29 9C29 C 8A              F:009583
   PHA                                             ;   1C2A 9C2A C 48              F:009583
-  JSR L_3_7F73                                    ;   1C2B 9C2B C 20 73 FF        F:009583
+  JSR AutocompleteAnswer                                    ;   1C2B 9C2B C 20 73 FF        F:009583
   PLA                                             ;   1C2E 9C2E C 68              F:009584
   ASL                                             ;   1C2F 9C2F C 0A              F:009584
   TAX                                             ;   1C30 9C30 C AA              F:009584
@@ -3923,7 +3923,7 @@ L_0_1E4D:
   LDX #$0                                         ;   1E6F 9E6F C A2 00           F:009645
   STX JoypadBoth                                      ;   1E71 9E71 C 86 15           F:009645
 B_0_1E73:
-  LDA R_07DC,X                                    ;   1E73 9E73 C BD DC 07        F:009645
+  LDA ValidationScoreboardText,X                                    ;   1E73 9E73 C BD DC 07        F:009645
   BEQ B_0_1E97                                    ;   1E76 9E76 C F0 1F           F:009645
   INC JoypadBoth                                      ;   1E78 9E78 C E6 15           F:009645
   SEC                                             ;   1E7A 9E7A C 38              F:009645
@@ -4496,7 +4496,7 @@ B_1_22A1:
   BNE B_1_22A1                                    ;   22AA A2AA C D0 F5           F:034572
   LDA #$1                                         ;   22AC A2AC C A9 01           F:034572
   STA R_0384,X                                    ;   22AE A2AE C 9D 84 03        F:034572
-  JSR L_3_7F73                                    ;   22B1 A2B1 C 20 73 FF        F:034572
+  JSR AutocompleteAnswer                                    ;   22B1 A2B1 C 20 73 FF        F:034572
   JSR B_0_1C46                                    ;   22B4 A2B4 C 20 46 9C        F:034573
   LDA R_0391                                      ;   22B7 A2B7 C AD 91 03        F:034696
   BNE B_1_2297                                    ;   22BA A2BA C D0 DB           F:034696
@@ -5038,7 +5038,7 @@ B_1_279A:
   LDA #$9                                         ;   279D A79D C A9 09           F:042313
   STA R_0021                                      ;   279F A79F C 85 21           F:042313
   LDA #$FF                                        ;   27A1 A7A1 C A9 FF           F:042313
-  JSR L_3_78F6                                    ;   27A3 A7A3 C 20 F6 F8        F:042313
+  JSR BeginAnswerValidation                                    ;   27A3 A7A3 C 20 F6 F8        F:042313
 B_1_27A6:
   JSR ValidateAnswer                                    ;   27A6 A7A6 C 20 22 F9        F:042313
   BCS B_1_27A6                                    ;   27A9 A7A9 C B0 FB           F:042313
@@ -5058,7 +5058,7 @@ B_1_27C2:
   LDX D_1_25C7,Y                                  ;   27C2 A7C2 C BE C7 A5        F:042368
   LDY #$0                                         ;   27C5 A7C5 C A0 00           F:042368
 B_1_27C7:
-  LDA R_07DC,Y                                    ;   27C7 A7C7 C B9 DC 07        F:042368
+  LDA ValidationScoreboardText,Y                                    ;   27C7 A7C7 C B9 DC 07        F:042368
   STA R_0551,X                                    ;   27CA A7CA C 9D 51 05        F:042368
   BEQ B_1_27D3                                    ;   27CD A7CD C F0 04           F:042368
   INX                                             ;   27CF A7CF C E8              F:042368
@@ -6215,7 +6215,7 @@ B_1_3107:
   INY                                             ;   310C B10C C C8              F:008272
   TYA                                             ;   310D B10D C 98              F:008272
   LDX R_037E                                      ;   310E B10E C AE 7E 03        F:008272
-  STA R_03AD,X                                    ;   3111 B111 C 9D AD 03        F:008272
+  STA QuestionAnswerOffsets+1,X                                    ;   3111 B111 C 9D AD 03        F:008272
   LDX R_0381                                      ;   3114 B114 C AE 81 03        F:008272
   LDA AnswerScratchSpace,X                        ;   3117 B117 C BD B9 06        F:008272
   BEQ B_1_3123                                    ;   311A B11A C F0 07           F:008272
@@ -6229,7 +6229,7 @@ B_1_3123:
 B_1_3129:
   LDX R_037E                                      ;   3129 B129 C AE 7E 03        F:008272
   LDA #$FF                                        ;   312C B12C C A9 FF           F:008272
-  STA R_03AD,X                                    ;   312E B12E C 9D AD 03        F:008272
+  STA QuestionAnswerOffsets+1,X                                    ;   312E B12E C 9D AD 03        F:008272
   RTS                                             ;   3131 B131 C 60              F:008272
 
 QuestionDataLength:
@@ -9332,9 +9332,9 @@ L_2_4CB5:
   ASL                                             ;   4CB5 CCB5 C 0A              F:009397
   TAX                                             ;   4CB6 CCB6 C AA              F:009397
   JSR L_2_4DA4                                    ;   4CB7 CCB7 C 20 A4 CD        F:009397
-  LDA D_2_4D14,X                                  ;   4CBA CCBA C BD 14 CD        F:009397
+  LDA FaceoffTextDataTable,X                                  ;   4CBA CCBA C BD 14 CD        F:009397
   STA R_0029                                      ;   4CBD CCBD C 85 29           F:009397
-  LDA D_2_4D15,X                                  ;   4CBF CCBF C BD 15 CD        F:009397
+  LDA FaceoffTextDataTable+1,X                                  ;   4CBF CCBF C BD 15 CD        F:009397
   STA R_002A                                      ;   4CC2 CCC2 C 85 2A           F:009397
   LDX ActiveFamily                                ;   4CC4 CCC4 C A6 0B           F:009397
   LDY D_0_0FC6,X                                  ;   4CC6 CCC6 C BC C6 8F        F:009397
@@ -9384,40 +9384,30 @@ B_2_4CFC:
   AND #$7F                                        ;   4D0F CD0F C 29 7F           F:009400
   JMP B_2_4CDB                                    ;   4D11 CD11 C 4C DB CC        F:009400
 
-D_2_4D14:
-.byte $26                                         ;   4D14 CD14 .        &        
-D_2_4D15:
-.byte $CD,$26,$CD                                 ;   4D15 CD15 ...      ?&?      
-.addr D_2_4D3B                                    ;   4D18 CD18 N 3B CD
-.addr D_2_4D50                                    ;   4D1A CD1A N 50 CD
-.addr D_2_4D50                                    ;   4D1C CD1C N 50 CD
-.addr D_2_4D65                                    ;   4D1E CD1E N 65 CD
-.addr D_2_4D65                                    ;   4D20 CD20 N 65 CD
-.addr D_2_4D7A                                    ;   4D22 CD22 N 7A CD
-.addr D_2_4D8F                                    ;   4D24 CD24 N 8F CD
-.byte $41,$4C,$52,$45,$41,$44,$59,$20             ;   4D26 CD26 ........ ALREADY  
-.byte $41,$4E,$53,$57,$45,$52,$45,$44             ;   4D2E CD2E ........ ANSWERED 
-.byte $20,$20,$20,$20,$00                         ;   4D36 CD36 .....        ?    
-D_2_4D3B:
-.byte $4E,$45,$57,$20,$51,$55,$45,$53             ;   4D3B CD3B DDDDDDDD NEW QUES F:038394
-.byte $54,$49,$4F,$4E,$20,$20,$20,$20             ;   4D43 CD43 DDDDDDDD TION     F:038394
-.byte $20,$20,$20,$20,$00                         ;   4D4B CD4B DDDDD        ?    F:038394
-D_2_4D50:
-.byte $23,$23,$23,$23,$23,$23,$23,$23             ;   4D50 CD50 DDDDDDDD ######## F:009833
-.byte $27,$53,$20,$50,$4C,$41,$59,$20             ;   4D58 CD58 DDDDDDDD 'S PLAY  F:009833
-.byte $20,$20,$20,$20,$00                         ;   4D60 CD60 DDDDD        ?    F:009833
-D_2_4D65:
-.byte $23,$23,$23,$23,$23,$23,$23,$23             ;   4D65 CD65 DDDDDDDD ######## F:013653
-.byte $27,$53,$20,$50,$4C,$41,$59,$20             ;   4D6D CD6D DDDDDDDD 'S PLAY  F:013653
-.byte $59,$2F,$4E,$20,$00                         ;   4D75 CD75 DDDDD    Y/N ?    F:013653
-D_2_4D7A:
-.byte $20,$20,$20,$20,$20,$20,$20,$20             ;   4D7A CD7A DDDDDDDD          F:009397
-.byte $20,$20,$20,$20,$20,$20,$20,$20             ;   4D82 CD82 DDDDDDDD          F:009397
-.byte $20,$20,$20,$20,$00                         ;   4D8A CD8A DDDDD        ?    F:009397
-D_2_4D8F:
-.byte $23,$23,$23,$23,$23,$23,$23,$23             ;   4D8F CD8F DDDDDDDD ######## F:009400
-.byte $27,$53,$20,$41,$4E,$53,$57,$45             ;   4D97 CD97 DDDDDDDD 'S ANSWE F:009400
-.byte $52,$49,$4E,$47,$00                         ;   4D9F CD9F DDDDD    RING?    F:009400
+FaceoffTextDataTable:
+.addr @Text_AlreadyAnswered
+.addr @Text_AlreadyAnswered
+.addr @Text_NewQuestion                                    ;   4D18 CD18 N 3B CD
+.addr @Text_FamilyPlays                                    ;   4D1A CD1A N 50 CD
+.addr @Text_FamilyPlays                                    ;   4D1C CD1C N 50 CD
+.addr @Text_FamilyPlaysYN                                    ;   4D1E CD1E N 65 CD
+.addr @Text_FamilyPlaysYN                                    ;   4D20 CD20 N 65 CD
+.addr @Text_Spaces                                    ;   4D22 CD22 N 7A CD
+.addr @Text_FamilyAnswering                                    ;   4D24 CD24 N 8F CD
+
+@Text_AlreadyAnswered:
+.byte "ALREADY ANSWERED    ",$00
+@Text_NewQuestion:
+.byte "NEW QUESTION        ",$00
+@Text_FamilyPlays:
+.byte "########'S PLAY     ",$00
+@Text_FamilyPlaysYN:
+.byte "########'S PLAY Y/N ",$00
+@Text_Spaces:
+.byte "                    ",$00
+@Text_FamilyAnswering:
+.byte "########'S ANSWERING",$00
+
 L_2_4DA4:
   CLC                                             ;   4DA4 CDA4 C 18              F:008610
   LDA D_0_0F76                                    ;   4DA5 CDA5 C AD 76 8F        F:008610
@@ -11075,7 +11065,7 @@ DrawFamilyMember:
 
 B_2_5A8E:
   LDA R_0044                                      ;   5A8E DA8E C A5 44           F:006105
-  LDY R_0047                                      ;   5A90 DA90 C A4 47           F:006105
+  LDY ValidationAnswerCopy-1                                      ;   5A90 DA90 C A4 47           F:006105
   BNE B_2_5AC3                                    ;   5A92 DA92 C D0 2F           F:006105
   LDX R_05BF                                      ;   5A94 DA94 C AE BF 05        F:006105
   LDY R_05AE,X                                    ;   5A97 DA97 C BC AE 05        F:006105
@@ -11127,7 +11117,7 @@ B_2_5AD4:
   LDA R_0041                                      ;   5AF0 DAF0 C A5 41           F:006105
   BEQ B_2_5AFA                                    ;   5AF2 DAF2 C F0 06           F:006105
   STA R_0042                                      ;   5AF4 DAF4 C 85 42           F:008276
-  STY R_0047                                      ;   5AF6 DAF6 C 84 47           F:008276
+  STY ValidationAnswerCopy-1                                      ;   5AF6 DAF6 C 84 47           F:008276
   SEC                                             ;   5AF8 DAF8 C 38              F:008276
   RTS                                             ;   5AF9 DAF9 C 60              F:008276
 
@@ -11142,7 +11132,7 @@ B_2_5AFA:
 B_2_5B09:
   STA R_05BF                                      ;   5B09 DB09 C 8D BF 05        F:006105
   LDA #$0                                         ;   5B0C DB0C C A9 00           F:006105
-  STA R_0047                                      ;   5B0E DB0E C 85 47           F:006105
+  STA ValidationAnswerCopy-1                                      ;   5B0E DB0E C 85 47           F:006105
   SEC                                             ;   5B10 DB10 C 38              F:006105
 L_2_5B11:
   RTS                                             ;   5B11 DB11 C 60              F:006105
@@ -13428,35 +13418,34 @@ LF8D4:
 
 
 
-L_3_78F6:
-  STA R_07E8                                      ;   78F6 F8F6 C 8D E8 07        F:008943
-  LDX #$0                                         ;   78F9 F8F9 C A2 00           F:008943
-  STX R_07DC                                      ;   78FB F8FB C 8E DC 07        F:008943
-  STX a:QuestionValidationStage                   ;   78FE F8FE C 8E E8 00        F:008943
-  STX R_07D9                                      ;   7901 F901 C 8E D9 07        F:008943
-  DEX                                             ;   7904 F904 C CA              F:008943
-  STX R_07D5                                      ;   7905 F905 C 8E D5 07        F:008943
-  LDA #$80                                        ;   7908 F908 C A9 80           F:008943
-  STA R_07D1                                      ;   790A F90A C 8D D1 07        F:008943
-  LDA #$C                                         ;   790D F90D C A9 0C           F:008943
-  STA ValidationCurrentAnswer                     ;   790F F90F C 8D CF 07        F:008943
-  LDX UserAnswerInputLength                       ;   7912 F912 C AE 5F 03        F:008943
-  LDA UserAnswerInputLength,X                     ;   7915 F915 C BD 5F 03        F:008943
-  CMP #$20                                        ;   7918 F918 C C9 20           F:008943
-  BNE B_3_7921                                    ;   791A F91A C D0 05           F:008943
-  LDA #$0                                         ;   791C F91C . A9 00           
-  STA UserAnswerInputLength,X                     ;   791E F91E . 9D 5F 03        
-B_3_7921:
-  RTS                                             ;   7921 F921 C 60              F:008943
+BeginAnswerValidation:
+  sta AnswerValidationFailValue                   ; initialize fail value
+  ldx #$0                                         ;
+  stx ValidationScoreboardText                    ; initialize scoreboard text
+  stx a:AnswerValidationStage                     ; set strict mode validation
+  stx $07D9                                       ; clear something - todo - unused?
+  dex                                             ; set X to FF
+  stx AnswerValidationResult                      ; initialize to 'fail' result
+  lda #$80                                        ;   7908 F908 C A9 80           F:008943
+  STA FinalValidatorBestResult                                      ;   790A F90A C 8D D1 07        F:008943
+  lda #12                                         ; start at last possible answer (on the board of 12 answers)
+  sta ValidationCurrentAnswer                     ;
+  ldx UserAnswerInputLength                       ; check last answer character
+  lda UserAnswerInputLength,x                     ;
+  cmp #' '                                        ; is it space?
+  bne :+                                          ; no - continue ahead
+  lda #$0                                         ; yes - clear the trailing space
+  sta UserAnswerInputLength,x                     ;
+: rts                                             ; done!
 
 ValidateAnswer:
   @TempPtr = $0E
-  ldx a:QuestionValidationStage
-  lda AnswerValidatorProceduresLo,x
-  sta @TempPtr
-  lda AnswerValidatorProceduresHi,x
-  sta @TempPtr+1
-  jmp (@TempPtr)
+  ldx a:AnswerValidationStage                     ; check current validation stage
+  lda AnswerValidatorProceduresLo,x               ; load its address
+  sta @TempPtr                                    ;
+  lda AnswerValidatorProceduresHi,x               ;
+  sta @TempPtr+1                                  ;
+  jmp (@TempPtr)                                  ; and run the validator
 
 .define ValidationProcedures \
   AnswerValidatorStrictStart, AnswerValidatorLooseStart, AnswerValidatorFinalStart, \
@@ -13467,101 +13456,101 @@ AnswerValidatorProceduresHi: .hibytes ValidationProcedures
 
 AnswerValidatorStrictStart:
   dec ValidationCurrentAnswer                     ; move to next answer
-  bmi ValidationProcedureFailed                   ; if we've already checked all answers, bail
+  bmi ValidationStageFailed                       ; if we've already checked all answers, bail
   ldx ValidationCurrentAnswer                     ;
   lda QuestionAnswerOffsets,x                     ; find the memory offset to the current answer
-  cmp #$FF                                        ; if it happens to be FF, bail out.
-  beq ValidationExit
-  jsr L_3_79EE
-  lda #AnswerValidator_Strict
-  sta a:QuestionValidationStage
+  cmp #$FF                                        ; if it's FF this is not an active answer.
+  beq ValidationContinue                          ; if so skip this frame and continue to the next answer
+  jsr PrepareAnswerValidation                     ; otherwise load in the answer text
+  lda #AnswerValidator_Strict                     ; and set the validation stage to continue validation
+  sta a:AnswerValidationStage                     ;
 AnswerValidatorStrict:
-  JSR L_3_7A1C                                    ;   7955 F955 C 20 1C FA        F:008950
-  BCS ValidatorExit2                                    ;   7958 F958 C B0 20           F:008950
-  LDA #$0                                         ;   795A F95A C A9 00           F:008952
-  STA a:QuestionValidationStage                   ;   795C F95C C 8D E8 00        F:008952
-  JSR L_3_7BB2                                    ;   795F F95F C 20 B2 FB        F:008952
-  BMI ValidationExit                                    ;   7962 F962 C 30 15           F:008952
-  JSR L_3_7F0E                                    ;   7964 F964 C 20 0E FF        F:013406
-B_3_7967: 
-  LDX R_07D5                                      ;   7967 F967 C AE D5 07        F:009033
-  BPL :+                                    ;   796A F96A C 10 03           F:009033
-  LDX R_07E8                                      ;   796C F96C C AE E8 07        F:009033
-: CLC                                             ;   796F F96F C 18              F:009033
-  RTS                                             ;   7970 F970 C 60              F:009033
+  jsr CreateAnswerVariants                        ; start by creating all answer variants for this answer
+  bcs ValidatorExit2                              ; one is created per frame, so delay until next frame after each successful variant
+  lda #AnswerValidator_StrictStart                ; set answer validator back to start
+  sta a:AnswerValidationStage                     ;
+  jsr ValidateAnswerStrict                        ; and run the actual validator against user input
+  bmi ValidationContinue                          ; if negative, we did not match any variant of the answer, so continue 
+  jsr ValidationSuccessful                        ; handle correct answer
+FinalValidationStageFailed: 
+  ldx AnswerValidationResult                      ; load our validation result
+  bpl :+                                          ; and use it if it is set to a positive value
+  ldx AnswerValidationFailValue                   ; otherwise load #$FF
+: clc                                             ; validation stage has finished.
+  rts                                             ; exit!
 
-ValidationProcedureFailed:
-  INC a:QuestionValidationStage                   ;   7971 F971 C EE E8 00        F:008973
-  LDA #$C                                         ;   7974 F974 C A9 0C           F:008973
-  STA ValidationCurrentAnswer                     ;   7976 F976 C 8D CF 07        F:008973
-ValidationExit:
-  SEC                                             ; mark validation as unfinished
+ValidationStageFailed:
+  inc a:AnswerValidationStage                     ; advance to the next stage of validation, allowing more typos
+  lda #12                                         ; set the validation back to the last answer
+  sta ValidationCurrentAnswer                     ;
+ValidationContinue:
+  sec                                             ; mark validation as unfinished
 ValidatorExit2:
-  RTS                                             ; exit!
+  rts                                             ; and exit!
 
 AnswerValidatorLooseStart:
-  DEC ValidationCurrentAnswer                     ;   797B F97B C CE CF 07        F:008974
-  BMI B_3_79B1                                    ;   797E F97E C 30 31           F:008974
-  LDX ValidationCurrentAnswer                     ;   7980 F980 C AE CF 07        F:008974
-  LDA QuestionAnswerOffsets,X                     ;   7983 F983 C BD AC 03        F:008974
-  CMP #$FF                                        ;   7986 F986 C C9 FF           F:008974
-  BEQ B_3_79AF                                    ;   7988 F988 C F0 25           F:008974
-  JSR L_3_79EE                                    ;   798A F98A C 20 EE F9        F:008980
-  LDA #$4                                         ;   798D F98D C A9 04           F:008980
-  STA a:QuestionValidationStage                   ;   798F F98F C 8D E8 00        F:008980
+  dec ValidationCurrentAnswer                     ; move to next answer
+  bmi LooseValidationStageFailed                  ; if we've already checked all answers, bail
+  ldx ValidationCurrentAnswer                     ;
+  lda QuestionAnswerOffsets,x                     ; find the memory offset to the current answer
+  cmp #$FF                                        ; if it's FF this is not an active answer.
+  beq LooseValidationContinue                     ; if so skip this frame and continue to the next answer
+  jsr PrepareAnswerValidation                     ; otherwise load in the answer text
+  lda #AnswerValidator_Loose                      ; and set the validation stage to continue validation
+  sta a:AnswerValidationStage                     ;
 AnswerValidatorLoose:
-  JSR L_3_7A1C                                    ;   7992 F992 C 20 1C FA        F:008980
-  BCS ValidatorExit2                                    ;   7995 F995 C B0 E3           F:008980
-  LDA #$1                                         ;   7997 F997 C A9 01           F:008982
-  STA a:QuestionValidationStage                   ;   7999 F999 C 8D E8 00        F:008982
-  LDA AnswerScratchSpace                          ;   799C F99C C AD B9 06        F:008982
-  CMP #$30                                        ;   799F F99F C C9 30           F:008982
-  BCC B_3_79A7                                    ;   79A1 F9A1 C 90 04           F:008982
-  CMP #$3A                                        ;   79A3 F9A3 C C9 3A           F:008982
-  BCC B_3_79AF                                    ;   79A5 F9A5 C 90 08           F:008982
-B_3_79A7:
-  JSR L_3_7BE1                                    ;   79A7 F9A7 C 20 E1 FB        F:008982
-  BMI B_3_79AF                                    ;   79AA F9AA C 30 03           F:008982
-  JSR L_3_7F0E                                    ;   79AC F9AC C 20 0E FF        F:029664
-B_3_79AF:
-  SEC                                             ;   79AF F9AF C 38              F:008974
-  RTS                                             ;   79B0 F9B0 C 60              F:008974
+  jsr CreateAnswerVariants                        ; start by creating all answer variants for this answer
+  bcs ValidatorExit2                              ; one is created per frame, so delay until next frame after each successful variant
+  lda #AnswerValidator_LooseStart                 ; set answer validator back to start
+  sta a:AnswerValidationStage                     ;
+  lda AnswerScratchSpace                          ; check first answer character
+  cmp #'0'                                        ; compare it to 0
+  bcc @Validate                                   ; if lower than 0, run validation
+  cmp #'9'+1                                      ; compare it to 9
+  bcc LooseValidationContinue                     ; if <= 9, this is a numeric answer, so it can't do loose validation, skip
+@Validate:
+  jsr ValidateAnswerLoose                         ; run answer validator
+  bmi LooseValidationContinue                     ; if negative, we did not match any variant of the answer, so continue
+  jsr ValidationSuccessful                        ; handle correct answer
+LooseValidationContinue:
+  sec                                             ; set carry to indicate that we're still running
+  rts                                             ; and exit
 
-B_3_79B1:
-  LDX R_07D5                                      ;   79B1 F9B1 C AE D5 07        F:009003
-  BMI ValidationProcedureFailed                                    ;   79B4 F9B4 C 30 BB           F:009003
-  CLC                                             ;   79B6 F9B6 C 18              F:029675
-  RTS                                             ;   79B7 F9B7 C 60              F:029675
+LooseValidationStageFailed:
+  ldx AnswerValidationResult                      ; get matched answer value
+  bmi ValidationStageFailed                       ; if we did not match, run shared validation stage failure to go to next stage
+  clc                                             ; clear carry to indicate that we have finished
+  rts                                             ; and exit
 
 AnswerValidatorFinalStart:
-  DEC ValidationCurrentAnswer                     ;   79B8 F9B8 C CE CF 07        F:009004
-  BMI B_3_7967                                    ;   79BB F9BB C 30 AA           F:009004
-  LDX ValidationCurrentAnswer                     ;   79BD F9BD C AE CF 07        F:009004
-  LDA QuestionAnswerOffsets,X                     ;   79C0 F9C0 C BD AC 03        F:009004
-  CMP #$FF                                        ;   79C3 F9C3 C C9 FF           F:009004
-  BEQ B_3_79EC                                    ;   79C5 F9C5 C F0 25           F:009004
-  JSR L_3_79EE                                    ;   79C7 F9C7 C 20 EE F9        F:009010
-  LDA #$5                                         ;   79CA F9CA C A9 05           F:009010
-  STA a:QuestionValidationStage                   ;   79CC F9CC C 8D E8 00        F:009010
+  dec ValidationCurrentAnswer                     ; move to next answer
+  bmi FinalValidationStageFailed                  ; if we've already checked all answers, bail
+  ldx ValidationCurrentAnswer                     ;
+  lda QuestionAnswerOffsets,x                     ; find the memory offset to the current answer
+  cmp #$FF                                        ; if it's FF this is not an active answer.
+  beq FinalValidationContinue                     ; if so skip this frame and continue to the next answer
+  jsr PrepareAnswerValidation                     ; otherwise load in the answer text
+  lda #AnswerValidator_Final                      ; and set the validation stage to continue validation
+  sta a:AnswerValidationStage                     ;
 AnswerValidatorFinal:
-  JSR L_3_7A1C                                    ;   79CF F9CF C 20 1C FA        F:009010
-  BCS ValidatorExit2                                    ;   79D2 F9D2 C B0 A6           F:009010
-  LDA #$2                                         ;   79D4 F9D4 C A9 02           F:009012
-  STA a:QuestionValidationStage                   ;   79D6 F9D6 C 8D E8 00        F:009012
-  LDA AnswerScratchSpace                          ;   79D9 F9D9 C AD B9 06        F:009012
-  CMP #$30                                        ;   79DC F9DC C C9 30           F:009012
-  BCC B_3_79E4                                    ;   79DE F9DE C 90 04           F:009012
-  CMP #$3A                                        ;   79E0 F9E0 C C9 3A           F:009012
-  BCC B_3_79EC                                    ;   79E2 F9E2 C 90 08           F:009012
-B_3_79E4:
-  JSR L_3_7C45                                    ;   79E4 F9E4 C 20 45 FC        F:009012
-  BMI B_3_79EC                                    ;   79E7 F9E7 C 30 03           F:009012
-  JSR L_3_7F0E                                    ;   79E9 F9E9 C 20 0E FF        F:024597
-B_3_79EC:
-  SEC                                             ;   79EC F9EC C 38              F:009004
-  RTS                                             ;   79ED F9ED C 60              F:009004
+  jsr CreateAnswerVariants                        ; start by creating all answer variants for this answer
+  bcs ValidatorExit2                              ; one is created per frame, so delay until next frame after each successful variant
+  lda #AnswerValidator_FinalStart                 ; set answer validator back to start
+  sta a:AnswerValidationStage                     ;
+  lda AnswerScratchSpace                          ; check first answer character
+  cmp #'0'                                        ; compare it to 0
+  bcc @Validate                                   ; if lower than 0, run validation
+  cmp #'9'+1                                      ; compare it to 9
+  bcc FinalValidationContinue                     ; if <= 9, this is a numeric answer, so it can't do loose validation, skip
+@Validate:
+  jsr ValidateAnswerFinal                         ; run answer validator
+  bmi FinalValidationContinue                     ; if negative, we did not match any variant of the answer, so continue
+  jsr ValidationSuccessful                        ; handle correct answer
+FinalValidationContinue:
+  sec                                             ; set carry to indicate that we're still running
+  rts                                             ; and exit
 
-L_3_79EE:
+PrepareAnswerValidation:
   ldy QuestionAnswerOffsets,x                     ; get the location of the current answer
   ldx #$0                                         ;
 : iny                                             ;
@@ -13570,667 +13559,605 @@ L_3_79EE:
   sta a:QuestionAnswerCopy-1,x                    ;
   bne :-                                          ;
   jsr CopyAnswerToScratch                         ; copy the current answer to scratch space
-  ldy #$13                                        ;   7A00 FA00 C A0 13           F:008950
-B_3_7A02:
-  LDA #$0                                         ;   7A02 FA02 C A9 00           F:008950
-  STA R_06A5,Y                                    ;   7A04 FA04 C 99 A5 06        F:008950
-  LDA #$FF                                        ;   7A07 FA07 C A9 FF           F:008950
-  STA R_07B9,Y                                    ;   7A09 FA09 C 99 B9 07        F:008950
-  DEY                                             ;   7A0C FA0C C 88              F:008950
-  BNE B_3_7A02                                    ;   7A0D FA0D C D0 F3           F:008950
-  LDA #$80                                        ;   7A0F FA0F C A9 80           F:008950
-  STA R_06A5                                      ;   7A11 FA11 C 8D A5 06        F:008950
-  LDA #$0                                         ;   7A14 FA14 C A9 00           F:008950
-  STA R_07B9                                      ;   7A16 FA16 C 8D B9 07        F:008950
-  JMP L_3_7B19                                    ;   7A19 FA19 C 4C 19 FB        F:008950
+  ldy #MaxValidationVariants-1                    ; start clearing each variant state
+@ClearVariantStates:
+  lda #$0                                         ;
+  sta AnswerVariantState,y                        ;
+  lda #$FF                                        ;
+  sta AnswerVariantOffset,y                       ;
+  dey                                             ; step to next variant
+  bne @ClearVariantStates                         ; loop until 0
+  lda #$80                                        ; set first variant as enabled (there should always be 1)
+  sta AnswerVariantState                          ;
+  lda #$0                                         ; and it will start at the beginning of the scratch space
+  sta AnswerVariantOffset                         ;
+  jmp PrepareAnswerVariantStates                  ; then we set up the basic variant states
 
-L_3_7A1C:
-  LDA #$13                                        ;   7A1C FA1C C A9 13           F:008950
-  STA AnswerCopyIndex                                      ;   7A1E FA1E C 8D CE 07        F:008950
-B_3_7A21:
-  LDX AnswerCopyIndex                                      ;   7A21 FA21 C AE CE 07        F:008950
-  LDA R_06A5,X                                    ;   7A24 FA24 C BD A5 06        F:008950
-  BEQ B_3_7A32                                    ;   7A27 FA27 C F0 09           F:008950
-  AND #$40                                        ;   7A29 FA29 C 29 40           F:008950
-  BNE B_3_7A32                                    ;   7A2B FA2B C D0 05           F:008950
-  JSR L_3_7A39                                    ;   7A2D FA2D C 20 39 FA        F:008950
-  SEC                                             ;   7A30 FA30 C 38              F:008950
-  RTS                                             ;   7A31 FA31 C 60              F:008950
+CreateAnswerVariants:
+  lda #MaxValidationVariants-1                    ; set selected variant to max value
+  sta ValidationCurrentVariant                    ;
+@NextVariant:
+  ldx ValidationCurrentVariant                    ; get the current selected variant
+  lda AnswerVariantState,x                        ; and check its offset
+  beq @CheckNext                                  ; if null - check next
+  and #$40                                        ; check if bit 6 is set
+  bne @CheckNext                                  ; if so this variant has already been set up, skip ahead
+  jsr @CreateAnswerVariant                        ; otherwise we need to set up the variant
+  sec                                             ; set carry to mark that a new variant was created
+  rts                                             ; and exit
+@CheckNext:
+  dec ValidationCurrentVariant                    ; step to the next variant
+  bpl @NextVariant                                ; and continue checking if we have not reached the end
+  clc                                             ; clear carry to mark that all variants are created
+  rts                                             ; and exit.
 
-B_3_7A32:
-  DEC AnswerCopyIndex                                      ;   7A32 FA32 C CE CE 07        F:008950
-  BPL B_3_7A21                                    ;   7A35 FA35 C 10 EA           F:008950
-  CLC                                             ;   7A37 FA37 C 18              F:008952
-  RTS                                             ;   7A38 FA38 C 60              F:008952
-
-L_3_7A39:
-  txa                                             ; store entry state
+@CreateAnswerVariant:
+  txa                                             ; store entry state on stack
   pha                                             ;
-  ldy R_07B9,X                                    ;
-B_3_7A3E:
-  LDA AnswerScratchSpace,Y                        ;   7A3E FA3E C B9 B9 06        F:008950
-  BEQ B_3_7A83                                    ;   7A41 FA41 C F0 40           F:008950
-  INY                                             ;   7A43 FA43 C C8              F:008950
-  CMP #'('                                        ;   7A44 FA44 C C9 28           F:008950
-  BNE B_3_7A3E                                    ;   7A46 FA46 C D0 F6           F:008950
-L_3_7A48:
-  LDA AnswerScratchSpace,Y                        ;   7A48 FA48 C B9 B9 06        F:008950
-  CMP #')'                                        ;   7A4B FA4B C C9 29           F:008950
-  BEQ B_3_7A74                                    ;   7A4D FA4D C F0 25           F:008950
-  STX R_07D0                                      ;   7A4F FA4F C 8E D0 07        F:008950
-  TYA                                             ;   7A52 FA52 C 98              F:008950
-  PHA                                             ;   7A53 FA53 C 48              F:008950
-  JSR L_3_7B19                                    ;   7A54 FA54 C 20 19 FB        F:008950
-  JSR L_3_7A8E                                    ;   7A57 FA57 C 20 8E FA        F:008950
-  LDA #$80                                        ;   7A5A FA5A C A9 80           F:008950
-  STA R_06A5,X                                    ;   7A5C FA5C C 9D A5 06        F:008950
-  LDA R_07DB                                      ;   7A5F FA5F C AD DB 07        F:008950
-  STA R_07B9,X                                    ;   7A62 FA62 C 9D B9 07        F:008950
-  TAX                                             ;   7A65 FA65 C AA              F:008950
-  JSR L_3_7A9B                                    ;   7A66 FA66 C 20 9B FA        F:008950
-  LDX R_07D0                                      ;   7A69 FA69 C AE D0 07        F:008950
-  PLA                                             ;   7A6C FA6C C 68              F:008950
-  TAY                                             ;   7A6D FA6D C A8              F:008950
-  JSR L_3_7B02                                    ;   7A6E FA6E C 20 02 FB        F:008950
-  JMP L_3_7A48                                    ;   7A71 FA71 C 4C 48 FA        F:008950
-
-B_3_7A74:
-  PLA                                             ;   7A74 FA74 C 68              F:008950
-  TAX                                             ;   7A75 FA75 C AA              F:008950
-  LDA #$0                                         ;   7A76 FA76 C A9 00           F:008950
-  STA R_06A5,X                                    ;   7A78 FA78 C 9D A5 06        F:008950
-  LDA #$FF                                        ;   7A7B FA7B C A9 FF           F:008950
-  STA R_07B9,X                                    ;   7A7D FA7D C 9D B9 07        F:008950
-  JMP L_3_7B19                                    ;   7A80 FA80 C 4C 19 FB        F:008950
-
-B_3_7A83:
-  PLA                                             ;   7A83 FA83 C 68              F:008951
-  TAX                                             ;   7A84 FA84 C AA              F:008951
-  LDA #$40                                        ;   7A85 FA85 C A9 40           F:008951
-  ORA R_06A5,X                                    ;   7A87 FA87 C 1D A5 06        F:008951
-  STA R_06A5,X                                    ;   7A8A FA8A C 9D A5 06        F:008951
-  RTS                                             ;   7A8D FA8D C 60              F:008951
-
-L_3_7A8E:
-  LDX #$0                                         ;   7A8E FA8E C A2 00           F:008950
-B_3_7A90:
-  LDA R_06A5,X                                    ;   7A90 FA90 C BD A5 06        F:008950
-  BEQ B_3_7A9A                                    ;   7A93 FA93 C F0 05           F:008950
-  INX                                             ;   7A95 FA95 C E8              F:008950
-  CPX #$14                                        ;   7A96 FA96 C E0 14           F:008950
-  BCC B_3_7A90                                    ;   7A98 FA98 C 90 F6           F:008950
-B_3_7A9A:
-  RTS                                             ;   7A9A FA9A C 60              F:008950
-
-L_3_7A9B:
-  TYA                                             ;   7A9B FA9B C 98              F:008950
-  PHA                                             ;   7A9C FA9C C 48              F:008950
-  LDY R_07D0                                      ;   7A9D FA9D C AC D0 07        F:008950
-  LDA R_07B9,Y                                    ;   7AA0 FAA0 C B9 B9 07        F:008950
-  TAY                                             ;   7AA3 FAA3 C A8              F:008950
-L_3_7AA4:
-  LDA AnswerScratchSpace,Y                        ;   7AA4 FAA4 C B9 B9 06        F:008950
-  CMP #$28                                        ;   7AA7 FAA7 C C9 28           F:008950
-  BEQ B_3_7AB3                                    ;   7AA9 FAA9 C F0 08           F:008950
-  STA AnswerScratchSpace,X                        ;   7AAB FAAB C 9D B9 06        F:008958
-  INY                                             ;   7AAE FAAE C C8              F:008958
-  INX                                             ;   7AAF FAAF C E8              F:008958
-  JMP L_3_7AA4                                    ;   7AB0 FAB0 C 4C A4 FA        F:008958
-
-B_3_7AB3:
-  LDA #$0                                         ;   7AB3 FAB3 C A9 00           F:008950
-  STA R_07D7                                      ;   7AB5 FAB5 C 8D D7 07        F:008950
-  PLA                                             ;   7AB8 FAB8 C 68              F:008950
-  TAY                                             ;   7AB9 FAB9 C A8              F:008950
-L_3_7ABA:
-  LDA AnswerScratchSpace,Y                        ;   7ABA FABA C B9 B9 06        F:008950
-  CMP #$28                                        ;   7ABD FABD C C9 28           F:008950
-  BNE B_3_7AC4                                    ;   7ABF FABF C D0 03           F:008950
-  INC R_07D7                                      ;   7AC1 FAC1 C EE D7 07        F:008957
-B_3_7AC4:
-  CMP #$29                                        ;   7AC4 FAC4 C C9 29           F:008950
-  BNE B_3_7ACD                                    ;   7AC6 FAC6 C D0 05           F:008950
-  DEC R_07D7                                      ;   7AC8 FAC8 C CE D7 07        F:008950
-  BMI B_3_7AE1                                    ;   7ACB FACB C 30 14           F:008950
-B_3_7ACD:
-  CMP #$2F                                        ;   7ACD FACD C C9 2F           F:008950
-  BNE B_3_7AD6                                    ;   7ACF FACF C D0 05           F:008950
-  LDA R_07D7                                      ;   7AD1 FAD1 C AD D7 07        F:008953
-  BEQ B_3_7AE1                                    ;   7AD4 FAD4 C F0 0B           F:008953
-B_3_7AD6:
-  LDA AnswerScratchSpace,Y                        ;   7AD6 FAD6 C B9 B9 06        F:008950
-  STA AnswerScratchSpace,X                        ;   7AD9 FAD9 C 9D B9 06        F:008950
-  INY                                             ;   7ADC FADC C C8              F:008950
-  INX                                             ;   7ADD FADD C E8              F:008950
-  JMP L_3_7ABA                                    ;   7ADE FADE C 4C BA FA        F:008950
-
-B_3_7AE1:
-  JSR L_3_7AEF                                    ;   7AE1 FAE1 C 20 EF FA        F:008950
-B_3_7AE4:
-  INY                                             ;   7AE4 FAE4 C C8              F:008950
-  INX                                             ;   7AE5 FAE5 C E8              F:008950
-  LDA AnswerScratchSpace-1,Y                                    ;   7AE6 FAE6 C B9 B8 06        F:008950
-  STA AnswerScratchSpace-1,X                                    ;   7AE9 FAE9 C 9D B8 06        F:008950
-  BNE B_3_7AE4                                    ;   7AEC FAEC C D0 F6           F:008950
-  RTS                                             ;   7AEE FAEE C 60              F:008950
-
-L_3_7AEF:
-  LDA AnswerScratchSpace,Y                        ;   7AEF FAEF C B9 B9 06        F:008950
-  INY                                             ;   7AF2 FAF2 C C8              F:008950
-  CMP #$29                                        ;   7AF3 FAF3 C C9 29           F:008950
-  BEQ B_3_7B01                                    ;   7AF5 FAF5 C F0 0A           F:008950
-  CMP #$28                                        ;   7AF7 FAF7 C C9 28           F:008953
-  BNE L_3_7AEF                                    ;   7AF9 FAF9 C D0 F4           F:008953
-  JSR L_3_7AEF                                    ;   7AFB FAFB C 20 EF FA        F:017963
-  JMP L_3_7AEF                                    ;   7AFE FAFE C 4C EF FA        F:017963
-
-B_3_7B01:
-  RTS                                             ;   7B01 FB01 C 60              F:008950
-
-L_3_7B02:
-  LDA AnswerScratchSpace,Y                        ;   7B02 FB02 C B9 B9 06        F:008950
-  CMP #$29                                        ;   7B05 FB05 C C9 29           F:008950
-  BEQ B_3_7B18                                    ;   7B07 FB07 C F0 0F           F:008950
-  INY                                             ;   7B09 FB09 C C8              F:008950
-  CMP #$2F                                        ;   7B0A FB0A C C9 2F           F:008950
-  BEQ B_3_7B18                                    ;   7B0C FB0C C F0 0A           F:008950
-  CMP #$28                                        ;   7B0E FB0E C C9 28           F:008950
-  BNE L_3_7B02                                    ;   7B10 FB10 C D0 F0           F:008950
-  JSR L_3_7AEF                                    ;   7B12 FB12 C 20 EF FA        F:008957
-  JMP L_3_7B02                                    ;   7B15 FB15 C 4C 02 FB        F:008957
-
-B_3_7B18:
-  RTS                                             ;   7B18 FB18 C 60              F:008950
-
-L_3_7B19:
-  TXA                                             ;   7B19 FB19 C 8A              F:008950
-  PHA                                             ;   7B1A FB1A C 48              F:008950
-  TYA                                             ;   7B1B FB1B C 98              F:008950
-  PHA                                             ;   7B1C FB1C C 48              F:008950
-  LDX #$0                                         ;   7B1D FB1D C A2 00           F:008950
-B_3_7B1F:
-  LDA R_06A5,X                                    ;   7B1F FB1F C BD A5 06        F:008950
-  BNE B_3_7B41                                    ;   7B22 FB22 C D0 1D           F:008950
-  TXA                                             ;   7B24 FB24 C 8A              F:008950
-  TAY                                             ;   7B25 FB25 C A8              F:008950
-B_3_7B26:
-  LDA R_06A6,Y                                    ;   7B26 FB26 C B9 A6 06        F:008950
-  STA R_06A5,Y                                    ;   7B29 FB29 C 99 A5 06        F:008950
-  LDA R_07BA,Y                                    ;   7B2C FB2C C B9 BA 07        F:008950
-  STA R_07B9,Y                                    ;   7B2F FB2F C 99 B9 07        F:008950
-  INY                                             ;   7B32 FB32 C C8              F:008950
-  CPY #$13                                        ;   7B33 FB33 C C0 13           F:008950
-  BCC B_3_7B26                                    ;   7B35 FB35 C 90 EF           F:008950
-  LDA #$0                                         ;   7B37 FB37 C A9 00           F:008950
-  STA R_06A5,Y                                    ;   7B39 FB39 C 99 A5 06        F:008950
-  LDA #$FF                                        ;   7B3C FB3C C A9 FF           F:008950
-  STA R_07B9,Y                                    ;   7B3E FB3E C 99 B9 07        F:008950
-B_3_7B41:
-  INX                                             ;   7B41 FB41 C E8              F:008950
-  CPX #$13                                        ;   7B42 FB42 C E0 13           F:008950
-  BCC B_3_7B1F                                    ;   7B44 FB44 C 90 D9           F:008950
-  LDX #$0                                         ;   7B46 FB46 C A2 00           F:008950
-B_3_7B48:
-  LDA R_06A5,X                                    ;   7B48 FB48 C BD A5 06        F:008950
-  AND #$80                                        ;   7B4B FB4B C 29 80           F:008950
-  BEQ B_3_7B75                                    ;   7B4D FB4D C F0 26           F:008950
-  LDA R_07B9,X                                    ;   7B4F FB4F C BD B9 07        F:008950
-  CMP R_07BA,X                                    ;   7B52 FB52 C DD BA 07        F:008950
-  BCC B_3_7B75                                    ;   7B55 FB55 C 90 1E           F:008950
-  BEQ B_3_7B75                                    ;   7B57 FB57 . F0 1C           
-  PHA                                             ;   7B59 FB59 . 48              
-  LDA R_06A5,X                                    ;   7B5A FB5A . BD A5 06        
-  PHA                                             ;   7B5D FB5D . 48              
-  LDA R_07BA,X                                    ;   7B5E FB5E . BD BA 07        
-  STA R_07B9,X                                    ;   7B61 FB61 . 9D B9 07        
-  LDA R_06A6,X                                    ;   7B64 FB64 . BD A6 06        
-  STA R_06A5,X                                    ;   7B67 FB67 . 9D A5 06        
-  PLA                                             ;   7B6A FB6A . 68              
-  STA R_06A6,X                                    ;   7B6B FB6B . 9D A6 06        
-  PLA                                             ;   7B6E FB6E . 68              
-  STA R_07BA,X                                    ;   7B6F FB6F . 9D BA 07        
-  JMP $FB1D                                       ;   7B72 FB72 . 4C 1D FB        
-
-B_3_7B75:
-  inx                                             ;   7B75 FB75 C E8              F:008950
-  cpx #AnswerMaxChars                                      ;   7B76 FB76 C E0 13           F:008950
-  bcc B_3_7B48                                    ;   7B78 FB78 C 90 CE           F:008950
-  ldx #$0                                         ;   7B7A FB7A C A2 00           F:008950
-  stx AnswerCopyIndex                             ; clear copy offset
+  ldy AnswerVariantOffset,x                       ;
+: lda AnswerScratchSpace,y                        ; check next character
+  beq @FinishAnswerVariant                        ; skip to end if we've reached the last character
+  iny                                             ; advance to next character
+  cmp #'('                                        ; check if we reached the start of a group
+  bne :-                                          ; if not - continue reading
 @Continue:
-  ldy AnswerCopyIndex                             ; load copy offset
-  lda R_06A5,Y                                    ;   7B82 FB82 C B9 A5 06        F:008950
-  BEQ @Next                                    ;   7B85 FB85 C F0 14           F:008950
-  LDA R_07B9,Y                                    ;   7B87 FB87 C B9 B9 07        F:008950
-  PHA                                             ;   7B8A FB8A C 48              F:008950
-  TXA                                             ;   7B8B FB8B C 8A              F:008950
-  STA R_07B9,Y                                    ;   7B8C FB8C C 99 B9 07        F:008950
-  PLA                                             ;   7B8F FB8F C 68              F:008950
-  TAY                                             ;   7B90 FB90 C A8              F:008950
-:
-  INX                                             ;   7B91 FB91 C E8              F:008950
-  INY                                             ;   7B92 FB92 C C8              F:008950
-  LDA AnswerScratchSpace-1,Y                                    ;   7B93 FB93 C B9 B8 06        F:008950
-  STA AnswerScratchSpace-1,X                                    ;   7B96 FB96 C 9D B8 06        F:008950
-  BNE :-                                    ;   7B99 FB99 C D0 F6           F:008950
+  lda AnswerScratchSpace,y                        ; we're in a group! get next character
+  cmp #')'                                        ; if this the end of the group?
+  beq @EndGroup                                   ; yes - skip ahead to end of group
+  stx CreateAnswerVariant_Index                   ; otherwise store away X
+  tya                                             ; and store Y on stack
+  pha                                             ;
+  jsr PrepareAnswerVariantStates                  ; set up the variant states
+  jsr GetVariantCount                             ; get the number of variants in use
+  lda #$80                                        ; mark final variant
+  sta AnswerVariantState,x                        ;
+  lda ValidationScratchLength                     ; and set the its offset to the end of scratch
+  sta AnswerVariantOffset,x                       ;
+  tax                                             ; put end of scratch in X
+  jsr ScratchSpaceAnswerSetup                     ; create the scratch space answer for this variant
+  ldx CreateAnswerVariant_Index                   ; restore X
+  pla                                             ; 
+  tay                                             ; restore Y
+  jsr SkipToNextCharacter                         ; skip ahead to next relevant character
+  jmp @Continue                                   ; keep reading characters
+@EndGroup:
+  pla                                             ; restore X from stack
+  tax                                             ;
+  lda #$0                                         ; clear this variants state
+  sta AnswerVariantState,x                        ;
+  lda #$FF                                        ;
+  sta AnswerVariantOffset,x                       ;
+  jmp PrepareAnswerVariantStates                  ; and finally set up the variant states
+@FinishAnswerVariant:
+  pla                                             ; restore X from stack
+  tax                                             ;
+  lda #$40                                        ; and mark this variant as finished
+  ora AnswerVariantState,x                        ;
+  sta AnswerVariantState,x                        ;
+  rts                                             ; and we are done!
+
+GetVariantCount:
+  ldx #$0                                         ; start at first variant
+: lda AnswerVariantState,x                        ; check variant state
+  beq @Done                                       ; exit if we've reached the end
+  inx                                             ; otherwise advance to next
+  cpx #MaxValidationVariants                      ; are we at the maximum allowed variants?
+  bcc :-                                          ; if not - keep looping
+@Done:
+  rts                                             ; and finally we're done!
+
+ScratchSpaceAnswerSetup:
+  tya                                             ; put current index on stack
+  pha                                             ;
+  ldy CreateAnswerVariant_Index                   ; get offet to start on from CreateAnswerVariant
+  lda AnswerVariantOffset,y                       ;
+  tay                                             ; copy offset to y
+: lda AnswerScratchSpace,y                        ; get character at offset
+  cmp #'('                                        ; check if it's the start of a group
+  beq @MoveNextGroup                              ; yes - copy the next group
+  sta AnswerScratchSpace,x                        ; no - copy this character to next offset
+  iny                                             ; advance to next character
+  inx                                             ;
+  jmp :-                                          ; and continue
+@MoveNextGroup:
+  @GroupCounter = $07D7
+  lda #$0                                         ; clear temp value
+  sta @GroupCounter                               ;
+  pla                                             ; pull stored Y value off stack
+  tay                                             ;
+@ContinueReading:
+  lda AnswerScratchSpace,y                        ; check next character
+  cmp #'('                                        ; is it the start of a group?
+  bne :+                                          ; no - skip ahead
+  inc @GroupCounter                               ; yes - increase group counter
+: cmp #')'                                        ; is it the end of a group?
+  bne :+                                          ; no - skip ahead
+  dec @GroupCounter                               ; yes - decrement group counter
+  bmi @SkipAndMove                                ; move rest of answer
+: cmp #'/'                                        ; is it the separator of a group?
+  bne :+                                          ; no - skip ahead
+  lda @GroupCounter                               ; are we in the starting group?
+  beq @SkipAndMove                                ; yes - move the rest of the answer
+: lda AnswerScratchSpace,y                        ; move this character to the next scratch position
+  sta AnswerScratchSpace,x                        ;
+  iny                                             ; advance to next character
+  inx                                             ;
+  jmp @ContinueReading                            ; and continue!
+@SkipAndMove:
+  jsr SkipInnerGroup                              ; start by skipping any inner groups, and advancing Y by 1
+: iny                                             ; advance both Y and X
+  inx                                             ;
+  lda AnswerScratchSpace-1,y                      ; and copy each character one by one
+  sta AnswerScratchSpace-1,x                      ;
+  bne :-                                          ; until we reach the end of the answer
+  rts                                             ; then we are done.
+
+SkipInnerGroup:
+  lda AnswerScratchSpace,y                        ; load character
+  iny                                             ; and advance
+  cmp #')'                                        ; check if we're closing the group
+  beq @Done                                       ; if so - exit
+  cmp #'('                                        ; check if we're opening a new group
+  bne SkipInnerGroup                              ; if not, keep reading
+  jsr SkipInnerGroup                              ; another level of nested groups, so, skip inner group
+  jmp SkipInnerGroup                              ; then continue to skip this group!
+@Done:
+  rts                                             ; we are done!
+
+SkipToNextCharacter:
+  lda AnswerScratchSpace,y                        ; check the next character
+  cmp #')'                                        ; is it a group closing character?
+  beq @Done                                       ; if so - exit
+  iny                                             ; otherwise advance by one
+  cmp #'/'                                        ; check if we've reached a group split
+  beq @Done                                       ; yes - exit
+  cmp #'('                                        ; check if we're at a nested group
+  bne SkipToNextCharacter                         ; no - keep reading
+  jsr SkipInnerGroup                              ; yes - read until we've found the end of the inner group
+  jmp SkipToNextCharacter                         ; and then continue reading
+@Done:
+  rts                                             ; we are done!
+
+PrepareAnswerVariantStates:
+  txa                                             ; store X and Y on the stack for now
+  pha                                             ;
+  tya                                             ;
+  pha                                             ;
+@RestartLoop:
+  ldx #$0                                         ; clear X
+@CheckVariantOuter:
+  lda AnswerVariantState,x                        ; check the state of this variant
+  bne @AdvanceToNextVariant0                      ; if this variant is already set, skip to next
+  txa                                             ; otherwise state is 0, copy X over to Y
+  tay                                             ;
+: lda AnswerVariantState+1,y                      ; copy the next variant down 1 to remove this empty variant
+  sta AnswerVariantState,y                        ;
+  lda AnswerVariantOffset+1,y                     ;
+  sta AnswerVariantOffset,y                       ;
+  iny                                             ; then advance to next variant
+  cpy #MaxValidationVariants-1                    ; have we reached the max variant number?
+  bcc :-                                          ; no - keep looping
+  lda #$0                                         ; yes - clear the final variants state
+  sta AnswerVariantState,y                        ;
+  lda #$FF                                        ;
+  sta AnswerVariantOffset,y                       ;
+@AdvanceToNextVariant0:
+  inx                                             ; advance outer iterator
+  cpx #MaxValidationVariants-1                    ;
+  bcc @CheckVariantOuter                          ; loop until we've checked all variants
+  ldx #$0                                         ; then start from first vartiant again
+@CheckVariant:
+  lda AnswerVariantState,x                        ; get current state of variant
+  and #$80                                        ; check if high is set
+  beq @AdvanceToNextVariant1                      ; if not, skip ahead to the next variant
+  lda AnswerVariantOffset,x                       ; compare offset of this variant to next variant
+  cmp AnswerVariantOffset+1,x                     ;
+  bcc @AdvanceToNextVariant1                      ; skip ahead if we don't need to flip these variants
+  beq @AdvanceToNextVariant1                      ;
+  pha                                             ; otherwise store current variant offset on stack
+  lda AnswerVariantState,x                        ; and get current variant state
+  pha                                             ; store variant state on stack
+  lda AnswerVariantOffset+1,x                     ; overwrite current variant with next variant
+  sta AnswerVariantOffset,x                       ;
+  lda AnswerVariantState+1,x                      ;
+  sta AnswerVariantState,x                        ;
+  pla                                             ; and replace next variant with stored stack values
+  sta AnswerVariantState+1,x                      ;
+  pla                                             ;
+  sta AnswerVariantOffset+1,x                     ;
+  jmp @RestartLoop                                ; re-run the entire loop with new sort order
+@AdvanceToNextVariant1:
+  inx                                             ; advance index
+  cpx #MaxValidationVariants-1                    ; check if we've reached the end of the variants list
+  bcc @CheckVariant                               ; if not, keep looping
+  ldx #$0                                         ; otherwise reset to the first variant
+  stx ValidationCurrentVariant                    ; and update the current variant index
+@Continue:
+  ldy ValidationCurrentVariant                    ; get current variant index
+  lda AnswerVariantState,y                        ; and get the state of the variant
+  beq @Next                                       ; if unused, skip ahead
+  lda AnswerVariantOffset,y                       ; get offset to current index
+  pha                                             ; store it on stack
+  txa                                             ; copy current X value to A
+  sta AnswerVariantOffset,y                       ; and replace the variant offset at Y with X
+  pla                                             ; then restore Y from the stack
+  tay                                             ;
+: inx                                             ; advance both Y and X
+  iny                                             ;
+  lda AnswerScratchSpace-1,y                      ; and copy the scratch answer characters from Y to X
+  sta AnswerScratchSpace-1,x                      ;
+  bne :-                                          ; loop until finished
 @Next:
-  INC AnswerCopyIndex                                      ;   7B9B FB9B C EE CE 07        F:008950
-  LDA AnswerCopyIndex                                      ;   7B9E FB9E C AD CE 07        F:008950
-  CMP #AnswerMaxChars+1                                     ;   7BA1 FBA1 C C9 14           F:008950
-  BNE @Continue                                    ;   7BA3 FBA3 C D0 DA           F:008950
-  STX R_07DB                                      ;   7BA5 FBA5 C 8E DB 07        F:008950
-  LDA #$FF                                        ;   7BA8 FBA8 C A9 FF           F:008950
-  STA AnswerScratchSpace,X                        ;   7BAA FBAA C 9D B9 06        F:008950
-  PLA                                             ;   7BAD FBAD C 68              F:008950
-  TAY                                             ;   7BAE FBAE C A8              F:008950
-  PLA                                             ;   7BAF FBAF C 68              F:008950
-  TAX                                             ;   7BB0 FBB0 C AA              F:008950
-  RTS                                             ;   7BB1 FBB1 C 60              F:008950
+  inc ValidationCurrentVariant                    ; advance to next variant
+  lda ValidationCurrentVariant                    ;
+  cmp #AnswerMaxChars+1                           ; have we reached the end of the variants list?
+  bne @Continue                                   ; no - keep looping
+  stx ValidationScratchLength                     ; looping finished, store the scratch space length
+  lda #$FF                                        ; and mark the end of the scratch space
+  sta AnswerScratchSpace,x                        ;
+  pla                                             ; then restore the callers state
+  tay                                             ;
+  pla                                             ;
+  tax                                             ;
+  rts                                             ; and we are done!
 
-L_3_7BB2:
-  LDX #$14                                        ;   7BB2 FBB2 C A2 14           F:008952
-  STX AnswerCopyIndex                                      ;   7BB4 FBB4 C 8E CE 07        F:008952
-B_3_7BB7:
-  LDA R_06A5,X                                    ;   7BB7 FBB7 C BD A5 06        F:008952
-  BEQ B_3_7BD7                                    ;   7BBA FBBA C F0 1B           F:008952
-  LDY R_07B9,X                                    ;   7BBC FBBC C BC B9 07        F:008952
-  LDX #$0                                         ;   7BBF FBBF C A2 00           F:008952
-B_3_7BC1:
-  LDA AnswerScratchSpace,Y                        ;   7BC1 FBC1 C B9 B9 06        F:008952
-  CMP UserAnswerInput,X                           ;   7BC4 FBC4 C DD 60 03        F:008952
-  BNE B_3_7BD7                                    ;   7BC7 FBC7 C D0 0E           F:008952
-  INX                                             ;   7BC9 FBC9 C E8              F:008972
-  INY                                             ;   7BCA FBCA C C8              F:008972
-  CMP #$0                                         ;   7BCB FBCB C C9 00           F:008972
-  BNE B_3_7BC1                                    ;   7BCD FBCD C D0 F2           F:008972
-  LDY ValidationCurrentAnswer                     ;   7BCF FBCF C AC CF 07        F:013406
-  LDX AnswerCopyIndex                                      ;   7BD2 FBD2 C AE CE 07        F:013406
-  CLC                                             ;   7BD5 FBD5 C 18              F:013406
-  RTS                                             ;   7BD6 FBD6 C 60              F:013406
+ValidateAnswerStrict:
+  ldx #MaxValidationVariants                      ; set selected variant to maximum possible
+  stx ValidationCurrentVariant                    ;
+@CheckVariant:
+  lda AnswerVariantState,x                        ; check offset of the variants.. offset.
+  beq @CheckNextVariant                           ; if zero, this variant is not used, skip to next
+  ldy AnswerVariantOffset,x                       ; then get first character offset in scratch
+  ldx #$0                                         ; and clear checking index of user answer
+: lda AnswerScratchSpace,y                        ; compare scratch character against user character
+  cmp UserAnswerInput,x                           ;
+  bne @CheckNextVariant                           ; if they do not match, we fail the check
+  inx                                             ; otherwise advance to next character
+  iny                                             ;
+  cmp #$0                                         ; check if scratch character was null
+  bne :-                                          ; if not, continue validating
+  ldy ValidationCurrentAnswer                     ; if it is we passed the test! set Y and X to the correct answer + variant
+  ldx ValidationCurrentVariant                    ;
+  clc                                             ; clear carry to indicate success
+  rts                                             ; and exit
+@CheckNextVariant:
+  dec ValidationCurrentVariant                    ; step to the next answer variant
+  ldx ValidationCurrentVariant                    ; fetch the variant index
+  bpl @CheckVariant                               ; and loop back around until we've reached the end
+  sec                                             ; if we made it here, no variant test passed. set carry to indicate failure.
+  rts                                             ; and exit
 
-B_3_7BD7:
-  DEC AnswerCopyIndex                                      ;   7BD7 FBD7 C CE CE 07        F:008952
-  LDX AnswerCopyIndex                                      ;   7BDA FBDA C AE CE 07        F:008952
-  BPL B_3_7BB7                                    ;   7BDD FBDD C 10 D8           F:008952
-  SEC                                             ;   7BDF FBDF C 38              F:008952
-  RTS                                             ;   7BE0 FBE0 C 60              F:008952
+ValidateAnswerLoose:
+  ldx #$0                                         ; start at first character
+: inx                                             ; advance character
+  lda UserAnswerInput-1,x                         ; and load current user answer character
+  sta a:ValidationAnswerCopy-1,x                  ; copy it over to our validation test
+  bne :-                                          ; keep looping until full answer is copied
+  jsr RunLooseValidationSwaps                     ; run a bunch of string wrangling on the user answer
+  ldx #$0                                         ; clear X
+: inx                                             ; advance to next character
+  lda a:QuestionAnswerCopy-1,x                    ; copy the wrangled answer over to another memory space
+  sta a:ValidationScratch2-1,x                    ;
+  bne :-                                          ; loop until copied
+  ldx #MaxValidationVariants-1                    ; set x to maximum variant index
+  stx ValidationCurrentVariant                    ;
+@Continue:
+  lda AnswerVariantState,x                        ; check current variant state
+  beq @NextVariant                                ; if not set - skip to next variant
+  ldy AnswerVariantOffset,x                       ; get offset to variant text
+  ldx #$0                                         ; start at first character
+: inx                                             ; advance 1 character
+  iny                                             ;
+  lda AnswerScratchSpace-1,y                      ; copy variant answer data to a temporary location
+  sta a:ValidationAnswerCopy-1,x                  ;
+  bne :-                                          ; loop until copied
+  ldx #$0                                         ; start at first character for first 3 strict test
+: lda UserAnswerInput,x                           ; get user answer character
+  beq @NextVariant                                ; go to next variant if we've reached the end
+  cmp a:ValidationAnswerCopy,x                    ; compare against variant answer text
+  bne @NextVariant                                ; skip to next variant if we don't match
+  inx                                             ; advance to next character
+  cpx #$3                                         ; have we checked the first 3 strict characters?
+  bne :-                                          ; no - keep looping
+  jsr RunLooseValidationSwaps                     ; run the swaps again
+  ldx #$0                                         ;
+: lda a:QuestionAnswerCopy,x                      ; check answer against copy
+  cmp a:ValidationScratch2,x                         ;
+  bne @NextVariant                                ; if they don't match, skip to next variant
+  inx                                             ; otherwise advance to next character
+  cmp #$0                                         ; are we at the end of the answer?
+  bne :-                                          ; if not - keep looping until end
+  ldx ValidationCurrentVariant                    ; otherwise we have a success! set the matched variant.
+  sec                                             ; set carry to indicate completion
+  rts                                             ; and exit!
+@NextVariant:
+  dec ValidationCurrentVariant                    ; advance to next variant
+  ldx ValidationCurrentVariant                    ; load the variant
+  bpl @Continue                                   ; loop until all variants have been tested
+  sec                                             ; set carry to indicate completion, without success
+  rts                                             ; and exit
 
-L_3_7BE1:
-  LDX #$0                                         ;   7BE1 FBE1 C A2 00           F:008982
-B_3_7BE3:
-  INX                                             ;   7BE3 FBE3 C E8              F:008982
-  LDA UserAnswerInputLength,X                     ;   7BE4 FBE4 C BD 5F 03        F:008982
-  STA a:R_0047,X                                  ;   7BE7 FBE7 C 9D 47 00        F:008982
-  BNE B_3_7BE3                                    ;   7BEA FBEA C D0 F7           F:008982
-  JSR L_3_7D56                                    ;   7BEC FBEC C 20 56 FD        F:008982
-  LDX #$0                                         ;   7BEF FBEF C A2 00           F:008982
-B_3_7BF1:
-  INX                                             ;   7BF1 FBF1 C E8              F:008982
-  LDA a:QuestionAnswerCopy-1,X                                  ;   7BF2 FBF2 C BD 67 00        F:008982
-  STA a:R_0087,X                                  ;   7BF5 FBF5 C 9D 87 00        F:008982
-  BNE B_3_7BF1                                    ;   7BF8 FBF8 C D0 F7           F:008982
-  LDX #$13                                        ;   7BFA FBFA C A2 13           F:008982
-  STX AnswerCopyIndex                                      ;   7BFC FBFC C 8E CE 07        F:008982
-B_3_7BFF:
-  LDA R_06A5,X                                    ;   7BFF FBFF C BD A5 06        F:008982
-  BEQ B_3_7C3B                                    ;   7C02 FC02 C F0 37           F:008982
-  LDY R_07B9,X                                    ;   7C04 FC04 C BC B9 07        F:008982
-  LDX #$0                                         ;   7C07 FC07 C A2 00           F:008982
-B_3_7C09:
-  INX                                             ;   7C09 FC09 C E8              F:008982
-  INY                                             ;   7C0A FC0A C C8              F:008982
-  LDA AnswerScratchSpace-1,Y                                    ;   7C0B FC0B C B9 B8 06        F:008982
-  STA a:R_0047,X                                  ;   7C0E FC0E C 9D 47 00        F:008982
-  BNE B_3_7C09                                    ;   7C11 FC11 C D0 F6           F:008982
-  LDX #$0                                         ;   7C13 FC13 C A2 00           F:008982
-B_3_7C15:
-  LDA UserAnswerInput,X                           ;   7C15 FC15 C BD 60 03        F:008982
-  BEQ B_3_7C3B                                    ;   7C18 FC18 C F0 21           F:008982
-  CMP a:R_0048,X                                  ;   7C1A FC1A C DD 48 00        F:008982
-  BNE B_3_7C3B                                    ;   7C1D FC1D C D0 1C           F:008982
-  INX                                             ;   7C1F FC1F C E8              F:009002
-  CPX #$3                                         ;   7C20 FC20 C E0 03           F:009002
-  BNE B_3_7C15                                    ;   7C22 FC22 C D0 F1           F:009002
-  JSR L_3_7D56                                    ;   7C24 FC24 C 20 56 FD        F:009002
-  LDX #$0                                         ;   7C27 FC27 C A2 00           F:009002
-B_3_7C29:
-  LDA a:QuestionAnswerCopy,X                                  ;   7C29 FC29 C BD 68 00        F:009002
-  CMP a:R_0088,X                                  ;   7C2C FC2C C DD 88 00        F:009002
-  BNE B_3_7C3B                                    ;   7C2F FC2F C D0 0A           F:009002
-  INX                                             ;   7C31 FC31 C E8              F:009002
-  CMP #$0                                         ;   7C32 FC32 C C9 00           F:009002
-  BNE B_3_7C29                                    ;   7C34 FC34 C D0 F3           F:009002
-  LDX AnswerCopyIndex                                      ;   7C36 FC36 C AE CE 07        F:029664
-  SEC                                             ;   7C39 FC39 C 38              F:029664
-  RTS                                             ;   7C3A FC3A C 60              F:029664
+ValidateAnswerFinal:
+  lda #$FF                                        ; default to failed result
+  sta FinalValidatorState                         ;
+  ldx #MaxValidationVariants-1                    ; start on last possible variant
+  stx ValidationCurrentVariant                    ; and store the current variant
+@Continue:
+  lda AnswerVariantState,x                        ; check the state of the variant
+  beq @NextVariant                                ; skip to next variant if this one is unused
+  ldx #$0                                         ; set X to first character
+: inx                                             ; advance to next character
+  lda UserAnswerInputLength,x                     ; and copy characters one by one
+  sta a:ValidationScratch2-1,x                       ; into another memory space
+  bne :-                                          ; loop until full answer is copied
+  ldx ValidationCurrentVariant                    ; get current variant index
+  ldy AnswerVariantOffset,x                       ; and get location in scratch memory for the answer text
+  ldx #$0                                         ; then clear X to check first character
+: inx                                             ; advance one character in X and Y
+  iny                                             ;
+  lda AnswerScratchSpace-1,y                      ; and copy variant answer from scratch to a temporary location
+  sta a:QuestionAnswerCopy-1,x                    ;
+  bne :-                                          ; loop until full answer is copied
+  ldx #$0                                         ; start at first character for first 3 strict test
+: lda UserAnswerInput,x                           ; get user answer character
+  beq @NextVariant                                ; go to next variant if we've reached the end
+  cmp a:QuestionAnswerCopy,x                      ; compare against variant answer text
+  bne @NextVariant                                ; skip to next variant if we don't match
+  inx                                             ; advance to next character
+  cpx #$3                                         ; have we checked the first 3 strict characters?
+  bne :-                                          ; no - keep looping
+  jsr @RunSpellchecker                            ; run the final, last ditch spellcheck
+  cmp FinalValidatorBestResult                    ; check against our current closest match
+  bcc @NextVariant                                ; skip to next variant if this match is worse
+  sta FinalValidatorBestResult                    ; otherwise update best match value
+  lda ValidationCurrentVariant                    ; and set this variant as the current closest match
+  sta FinalValidatorState                         ;
+@NextVariant:
+  dec ValidationCurrentVariant                    ; advance to next variant
+  ldx ValidationCurrentVariant                    ; load the variant
+  bpl @Continue                                   ; loop until all variants have been tested
+  ldx FinalValidatorBestResult                    ; get best match result
+  bpl @FailResult                                 ; skip ahead if validation failed
+  ldx FinalValidatorState                         ; otherwise return the best variant
+  sec                                             ;
+  rts                                             ; and we are done!
+@FailResult:
+  ldx #$80                                        ; we did not succeed in matching the answer, mark failure
+  sec                                             ;
+  rts                                             ; and exit
 
-B_3_7C3B:
-  DEC AnswerCopyIndex                                      ;   7C3B FC3B C CE CE 07        F:008982
-  LDX AnswerCopyIndex                                      ;   7C3E FC3E C AE CE 07        F:008982
-  BPL B_3_7BFF                                    ;   7C41 FC41 C 10 BC           F:008982
-  SEC                                             ;   7C43 FC43 C 38              F:008982
-  RTS                                             ;   7C44 FC44 C 60              F:008982
+@RunSpellchecker:
+  lda #$7A                                        ; set initial score value
+  sta FinalSpellcheckScore                        ;
+  ldx #$0                                         ; clear starting state
+  ldy #$0                                         ;
+  beq @CheckNextCharacter                         ; unconditional branch ahead to check first character
+@SkipAsterisk:
+  lda a:QuestionAnswerCopy,y                      ; get next character from answer
+  beq @SkipUserAsterisk                           ; then skip characters in the users answer
+  ora #$80                                        ; set high bit of character
+  sta a:QuestionAnswerCopy,y                      ;
+  iny                                             ; advance to next character
+  cmp #$80 | ' '                                  ; check for space character
+  bne @SkipAsterisk                               ; if not space, check next character
+@SkipUserAsterisk:
+  lda a:ValidationScratch2,x                      ; get next user answer character
+  beq @CheckNextCharacter                         ; exit loop at end of answer
+  ora #$80                                        ; set high bit of character
+  sta a:ValidationScratch2,x                      ;
+  inx                                             ; advance to next character
+  cmp #$80 | ' '                                  ; check for space character
+  bne @SkipUserAsterisk                           ; if not space, check next character
+@CheckNextCharacter:
+  lda a:ValidationScratch2,x                      ; check user answer character
+  beq @CalculateScoreResult                       ; skip ahead if we're at the end of the answer
+  lda a:QuestionAnswerCopy,y                      ; check variant answer character
+  beq @CalculateScoreResult                       ; skip ahead if we're at the end of the answer
+  cmp #'*'                                        ; is the answer character an asterisk (anything is allowed after)
+  beq @SkipAsterisk                               ; yes - skip ahead until the next space
+  lda #' '                                        ; get space character
+  cmp a:ValidationScratch2,x                      ; is the user answer character a space?
+  beq :+                                          ; if so - skip ahead
+  cmp a:QuestionAnswerCopy,y                      ; otherwise, is it the same as the question character?
+  bne @TestCharacter                              ; no - that's not good, branch ahead
+: lda a:ValidationScratch2,x                      ; get the user answer character
+  beq @CalculateScoreResult                       ; skip ahead if we've reached the end of both answers
+  inx                                             ; otherwise advance 1 character
+  cmp #' '                                        ; is it a space character?
+  bne :-                                          ; no - keep looping until we reach a non-space
+: lda a:QuestionAnswerCopy,y                      ; load variant answer character
+  beq @CalculateScoreResult                       ; skip ahead if we've reached the end of the answer
+  iny                                             ; otherwise advance to next character
+  cmp #' '                                        ; is it a space character?
+  bne :-                                          ; no - keep looping until we reach a non-space
+  beq @CheckNextCharacter                         ; otherwise keep checking characters
+@TestCharacter:
+  lda a:ValidationScratch2,x                      ; get user answer character again
+  cmp a:QuestionAnswerCopy,y                      ; compare against variant answer character
+  bne :+                                          ; branch ahead if they do not match
+  ora #$80                                        ; otherwise set high bit
+  sta a:QuestionAnswerCopy,y                      ; and update both answer characters
+  sta a:ValidationScratch2,x                      ;
+  clc                                             ;
+  lda FinalSpellcheckScore                        ; otherwise increment score by 5
+  adc #$5                                         ;
+  bcs :+                                          ; avoid overflow
+  sta FinalSpellcheckScore                        ; and update the score
+: inx                                             ; advance variant answer index
+  iny                                             ; advance user answer index
+  jmp @CheckNextCharacter                         ; and check next character
+@CalculateScoreResult:
+  ldx #$0                                         ; start scoring at first character
+@CalcNextUserAnswer:
+  lda a:ValidationScratch2,x                      ; get the user answer character
+  bmi :+                                          ; if high bit is set, this letter was correct, skip ahead
+  beq @CheckVariantAnswer                         ; otherwise if we've reached the end of the answer, skip ahead to check variant answer
+  sec                                             ; this letter was incorrect.
+  lda FinalSpellcheckScore                        ; subtract score value by 4 as a penalty
+  sbc #$4                                         ;
+  bcc :+                                          ;
+  sta FinalSpellcheckScore                        ; and update the score, unless it would overflow
+: inx                                             ; advance to next character
+  jmp @CalcNextUserAnswer                         ; and continue looping
+@CheckVariantAnswer:
+  ldx #$0                                         ; start scoring at first character
+@CalcNextVariantAnswer:
+  lda a:QuestionAnswerCopy,x                      ; get the variant answer character
+  bmi :+                                          ; if high bit is set, this letter was correct, skip ahead
+  beq @FinishSpellcheck                           ; otherwise if we've reached the end of the answer, skip to end
+  sec                                             ; this letter was incorrect.
+  lda FinalSpellcheckScore                        ; subtract score value by 4 as a penalty
+  sbc #$4                                         ;
+  bcc :+                                          ;
+  sta FinalSpellcheckScore                        ; and update the score, unless it would overflow
+: inx                                             ; advance to next characte
+  jmp @CalcNextVariantAnswer                      ; and continue looping
+@FinishSpellcheck:
+  lda FinalSpellcheckScore                        ; load the spell check score, it will be positive if we failed
+  rts                                             ;
 
-L_3_7C45:
-  LDA #$FF                                        ;   7C45 FC45 C A9 FF           F:009012
-  STA R_07D2                                      ;   7C47 FC47 C 8D D2 07        F:009012
-  LDX #$13                                        ;   7C4A FC4A C A2 13           F:009012
-  STX AnswerCopyIndex                                      ;   7C4C FC4C C 8E CE 07        F:009012
-B_3_7C4F:
-  LDA R_06A5,X                                    ;   7C4F FC4F C BD A5 06        F:009012
-  BEQ B_3_7C93                                    ;   7C52 FC52 C F0 3F           F:009012
-  LDX #$0                                         ;   7C54 FC54 C A2 00           F:009012
-B_3_7C56:
-  INX                                             ;   7C56 FC56 C E8              F:009012
-  LDA UserAnswerInputLength,X                     ;   7C57 FC57 C BD 5F 03        F:009012
-  STA a:R_0087,X                                  ;   7C5A FC5A C 9D 87 00        F:009012
-  BNE B_3_7C56                                    ;   7C5D FC5D C D0 F7           F:009012
-  LDX AnswerCopyIndex                                      ;   7C5F FC5F C AE CE 07        F:009012
-  LDY R_07B9,X                                    ;   7C62 FC62 C BC B9 07        F:009012
-  LDX #$0                                         ;   7C65 FC65 C A2 00           F:009012
-B_3_7C67:
-  INX                                             ;   7C67 FC67 C E8              F:009012
-  INY                                             ;   7C68 FC68 C C8              F:009012
-  LDA AnswerScratchSpace-1,Y                                    ;   7C69 FC69 C B9 B8 06        F:009012
-  STA a:QuestionAnswerCopy-1,X                                  ;   7C6C FC6C C 9D 67 00        F:009012
-  BNE B_3_7C67                                    ;   7C6F FC6F C D0 F6           F:009012
-  LDX #$0                                         ;   7C71 FC71 C A2 00           F:009012
-B_3_7C73:
-  LDA UserAnswerInput,X                           ;   7C73 FC73 C BD 60 03        F:009012
-  BEQ B_3_7C93                                    ;   7C76 FC76 C F0 1B           F:009012
-  CMP a:QuestionAnswerCopy,X                                  ;   7C78 FC78 C DD 68 00        F:009012
-  BNE B_3_7C93                                    ;   7C7B FC7B C D0 16           F:009012
-  INX                                             ;   7C7D FC7D C E8              F:009032
-  CPX #$3                                         ;   7C7E FC7E C E0 03           F:009032
-  BNE B_3_7C73                                    ;   7C80 FC80 C D0 F1           F:009032
-  JSR L_3_7CA9                                    ;   7C82 FC82 C 20 A9 FC        F:009032
-  CMP R_07D1                                      ;   7C85 FC85 C CD D1 07        F:009032
-  BCC B_3_7C93                                    ;   7C88 FC88 C 90 09           F:009032
-  STA R_07D1                                      ;   7C8A FC8A C 8D D1 07        F:024597
-  LDA AnswerCopyIndex                                      ;   7C8D FC8D C AD CE 07        F:024597
-  STA R_07D2                                      ;   7C90 FC90 C 8D D2 07        F:024597
-B_3_7C93:
-  DEC AnswerCopyIndex                                      ;   7C93 FC93 C CE CE 07        F:009012
-  LDX AnswerCopyIndex                                      ;   7C96 FC96 C AE CE 07        F:009012
-  BPL B_3_7C4F                                    ;   7C99 FC99 C 10 B4           F:009012
-  LDX R_07D1                                      ;   7C9B FC9B C AE D1 07        F:009012
-  BPL B_3_7CA5                                    ;   7C9E FC9E C 10 05           F:009012
-  LDX R_07D2                                      ;   7CA0 FCA0 C AE D2 07        F:009012
-  SEC                                             ;   7CA3 FCA3 C 38              F:009012
-  RTS                                             ;   7CA4 FCA4 C 60              F:009012
+RunLooseValidationSwaps:
+  ldx #$0                                         ; start at the beginning of the answer text
+  ldy #$0                                         ;
+@RunLooseValidationSwaps:
+  lda a:ValidationAnswerCopy,y                    ; get answer character
+  beq @TrimSpaces                                 ; exit loop if we've reached the end
+  sta LooseValidationAnswerCopyChar               ; store the current character
+  sty LooseValidationAnswerCopyIndex              ; and the current index we're checking
+  lda a:ValidationAnswerCopy+1,y                  ; then check the next character of the answer
+  cmp #'H'                                        ; is it H?
+  bne @CheckLetter                                ; no - skip ahead
+  inc LooseValidationAnswerCopyIndex              ; otherwise advance to the next character
+  ldy #$0                                         ; clear Y
+  beq @CheckH                                     ; then unconditionally branch ahead
+@CheckNextH:
+  iny                                             ; advance to next optional
+  iny                                             ;
+@CheckH:
+  lda LettersWithOptionalH,y                      ; check allowed letter before H
+  beq @NextAnswerCharacter                        ; if we reached the end - skip to next letter
+  cmp LooseValidationAnswerCopyChar               ; otherwise compare to our current answer character
+  bne @CheckNextH                                 ; if we did not match, check next optional H
+  lda LettersWithOptionalH+1,y                    ; we matched, so we replace the letter in the answer by an alternate
+  sta a:QuestionAnswerCopy,x                      ;
+  inx                                             ; advance to next question answer character
+  jmp @NextAnswerCharacter                        ; and to next answer character
+@CheckLetter:
+  ldy #$0                                         ; start checking for letter swaps at the start
+  beq @CheckSelectedLetter                        ; unconditional branch
+@CheckNextLetter:
+  iny                                             ; advance to next swap
+  iny                                             ;
+@CheckSelectedLetter:
+  lda LetterSwaps,y                               ; check current swap
+  beq @NextAnswerCharacter                        ; skip ahead if we've reached the last swap
+  cmp LooseValidationAnswerCopyChar               ; check if this letter matches the swap
+  bne @CheckNextLetter                            ; if not - skip ahead
+  lda LetterSwaps+1,y                             ; otherwise get the character to swap in
+  sta a:QuestionAnswerCopy,x                      ; and do the swap
+  inx                                             ; and advance to next question answer character
+@NextAnswerCharacter:
+  ldy LooseValidationAnswerCopyIndex              ; get current answer character
+  iny                                             ; advance by 1
+  jmp @RunLooseValidationSwaps                    ; loop back to the start
+@TrimSpaces:
+  lda #$0                                         ; mark the end of the answer with a 0
+  sta a:QuestionAnswerCopy,x                      ;
+@TrimLeadingSpaces:
+  lda a:QuestionAnswerCopy                        ; get first letter of answer
+  cmp #' '                                        ; is it a space?
+  bne @TrimMultipleSpaces                         ; no - skip ahead to trim multiple space (HELLO  THERE) -> (HELLO THERE)
+  ldx #$0                                         ; otherwise start trimming off spaces
+: inx                                             ; advance to next character
+  lda a:QuestionAnswerCopy,x                      ; copy character
+  sta a:QuestionAnswerCopy-1,x                    ;
+  bne :-                                          ; keep copying until we've reached the end of the answer
+  beq @TrimLeadingSpaces                          ; then loop back to keep checking for more leading spaces
+@TrimMultipleSpaces:
+  ldx #$FF                                        ; set X to FF to wrap around
+: inx                                             ; advance to next character
+  lda a:QuestionAnswerCopy,x                      ; load current character
+  beq @CheckSpace                                 ; skip ahead if we're at the end of the answer
+  cmp a:QuestionAnswerCopy+1,x                    ; compare against the next character
+  bne :-                                          ; if they're not the same - keep looping
+@CheckSpace:
+  dex                                             ; go back to the previous character
+  beq @MergeRepeatedCharacters                    ; if it is null, go to merge duplicate characters
+  lda a:QuestionAnswerCopy,x                      ; load the character
+  cmp #' '                                        ; check if it's a space
+  bne @MergeRepeatedCharacters                    ; if not - skip ahead to merge duplicate characters
+  lda #$0                                         ; otherwise mark the character as the end of the answer
+  sta a:QuestionAnswerCopy,x                      ; 
+  jmp @CheckSpace                                 ; keep looping
+@MergeRepeatedCharacters:
+  ldx #$FF                                        ; set X to FF to wrap around
+: inx                                             ; advance to next character
+  lda a:QuestionAnswerCopy,x                      ; load the character
+  beq @CheckTrailingU                             ; skip ahead if we're at the end of the answer
+  cmp a:QuestionAnswerCopy+1,x                    ; compare against the next character
+  bne :-                                          ; if they're not the same - keep looping
+  txa                                             ; transfer X to Y
+  tay                                             ;
+: lda a:QuestionAnswerCopy+1,y                    ; copy all characters down 1 step, removing the duplicate character
+  sta a:QuestionAnswerCopy,y                      ;
+  iny                                             ; advance to next character
+  cmp #$0                                         ; is it null?
+  bne :-                                          ; no - keep looping
+  beq @TrimLeadingSpaces                          ; yes - loop all the way back up top
+@CheckTrailingU:
+  ldx #$FF                                        ; set X to FF to wrap around
+: inx                                             ; advance to next character
+  lda a:QuestionAnswerCopy,x                      ; load the character
+  bne :-                                          ; keep looping until we reach the end of the answer
+  dex                                             ; decrement back to the last character
+  bmi @Done                                       ; exit if we looped around (answer has been emptied)
+  beq @Done                                       ; exit if we reached zero (only 1 character left in answer)
+  lda a:QuestionAnswerCopy,x                      ; check final answer character
+  cmp #'U'                                        ; is it a U?
+  bne @Done                                       ; no - we are done
+  lda #$0                                         ; yes - remove the trailing U
+  sta a:QuestionAnswerCopy,x                      ;
+  jmp @TrimLeadingSpaces                          ; and keep looping
+@Done:
+  rts                                             ; then we are done!
 
-B_3_7CA5:
-  LDX #$80                                        ;   7CA5 FCA5 . A2 80           
-  SEC                                             ;   7CA7 FCA7 . 38              
-  RTS                                             ;   7CA8 FCA8 . 60              
 
-L_3_7CA9:
-  LDA #$7A                                        ;   7CA9 FCA9 C A9 7A           F:009032
-  STA R_07D8                                      ;   7CAB FCAB C 8D D8 07        F:009032
-  LDX #$0                                         ;   7CAE FCAE C A2 00           F:009032
-  LDY #$0                                         ;   7CB0 FCB0 C A0 00           F:009032
-  BEQ B_3_7CD2                                    ;   7CB2 FCB2 C F0 1E           F:009032
-B_3_7CB4:
-  LDA a:QuestionAnswerCopy,Y                                  ;   7CB4 FCB4 . B9 68 00        
-  BEQ B_3_7CC3                                    ;   7CB7 FCB7 . F0 0A           
-  ORA #$80                                        ;   7CB9 FCB9 . 09 80           
-  STA a:QuestionAnswerCopy,Y                                  ;   7CBB FCBB . 99 68 00        
-  INY                                             ;   7CBE FCBE . C8              
-  CMP #$A0                                        ;   7CBF FCBF . C9 A0           
-  BNE B_3_7CB4                                    ;   7CC1 FCC1 . D0 F1           
-B_3_7CC3:
-  LDA a:R_0088,X                                  ;   7CC3 FCC3 . BD 88 00        
-  BEQ B_3_7CD2                                    ;   7CC6 FCC6 . F0 0A           
-  ORA #$80                                        ;   7CC8 FCC8 . 09 80           
-  STA a:R_0088,X                                  ;   7CCA FCCA . 9D 88 00        
-  INX                                             ;   7CCD FCCD . E8              
-  CMP #$A0                                        ;   7CCE FCCE . C9 A0           
-  BNE B_3_7CC3                                    ;   7CD0 FCD0 . D0 F1           
-B_3_7CD2:
-  LDA a:R_0088,X                                  ;   7CD2 FCD2 C BD 88 00        F:009032
-  BEQ B_3_7D22                                    ;   7CD5 FCD5 C F0 4B           F:009032
-  LDA a:QuestionAnswerCopy,Y                                  ;   7CD7 FCD7 C B9 68 00        F:009032
-  BEQ B_3_7D22                                    ;   7CDA FCDA C F0 46           F:009032
-  CMP #$2A                                        ;   7CDC FCDC C C9 2A           F:009032
-  BEQ B_3_7CB4                                    ;   7CDE FCDE C F0 D4           F:009032
-  LDA #$20                                        ;   7CE0 FCE0 C A9 20           F:009032
-  CMP a:R_0088,X                                  ;   7CE2 FCE2 C DD 88 00        F:009032
-  BEQ B_3_7CEC                                    ;   7CE5 FCE5 C F0 05           F:009032
-  CMP a:QuestionAnswerCopy,Y                                  ;   7CE7 FCE7 C D9 68 00        F:009032
-  BNE B_3_7D02                                    ;   7CEA FCEA C D0 16           F:009032
-B_3_7CEC:
-  LDA a:R_0088,X                                  ;   7CEC FCEC . BD 88 00        
-  BEQ B_3_7D22                                    ;   7CEF FCEF . F0 31           
-  INX                                             ;   7CF1 FCF1 . E8              
-  CMP #$20                                        ;   7CF2 FCF2 . C9 20           
-  BNE B_3_7CEC                                    ;   7CF4 FCF4 . D0 F6           
-B_3_7CF6:
-  LDA a:QuestionAnswerCopy,Y                                  ;   7CF6 FCF6 . B9 68 00        
-  BEQ B_3_7D22                                    ;   7CF9 FCF9 . F0 27           
-  INY                                             ;   7CFB FCFB . C8              
-  CMP #$20                                        ;   7CFC FCFC . C9 20           
-  BNE B_3_7CF6                                    ;   7CFE FCFE . D0 F6           
-  BEQ B_3_7CD2                                    ;   7D00 FD00 . F0 D0           
-B_3_7D02:
-  LDA a:R_0088,X                                  ;   7D02 FD02 C BD 88 00        F:009032
-  CMP a:QuestionAnswerCopy,Y                                  ;   7D05 FD05 C D9 68 00        F:009032
-  BNE B_3_7D1D                                    ;   7D08 FD08 C D0 13           F:009032
-  ORA #$80                                        ;   7D0A FD0A C 09 80           F:009032
-  STA a:QuestionAnswerCopy,Y                                  ;   7D0C FD0C C 99 68 00        F:009032
-  STA a:R_0088,X                                  ;   7D0F FD0F C 9D 88 00        F:009032
-  CLC                                             ;   7D12 FD12 C 18              F:009032
-  LDA R_07D8                                      ;   7D13 FD13 C AD D8 07        F:009032
-  ADC #$5                                         ;   7D16 FD16 C 69 05           F:009032
-  BCS B_3_7D1D                                    ;   7D18 FD18 C B0 03           F:009032
-  STA R_07D8                                      ;   7D1A FD1A C 8D D8 07        F:009032
-B_3_7D1D:
-  INX                                             ;   7D1D FD1D C E8              F:009032
-  INY                                             ;   7D1E FD1E C C8              F:009032
-  JMP B_3_7CD2                                    ;   7D1F FD1F C 4C D2 FC        F:009032
+LetterSwaps:
+.byte "A", "U"
+.byte "E", "U"
+.byte "I", "U"
+.byte "O", "U"
+.byte "U", "U"
+.byte "Y", "U"
+.byte "W", "U"
+.byte "'", "U"
+.byte "B", "B"
+.byte "F", "B"
+.byte "P", "B"
+.byte "V", "B"
+.byte "S", "S"
+.byte "Z", "S"
+.byte "X", "S"
+.byte "D", "D"
+.byte "T", "D"
+.byte "C", "J"
+.byte "G", "J"
+.byte "J", "J"
+.byte "K", "J"
+.byte "Q", "J"
+.byte "M", "M"
+.byte "N", "N"
+.byte "L", "L"
+.byte "R", "R"
+.byte "*", "*"
+.byte " ", " "
+.byte $00
 
-B_3_7D22:
-  LDX #$0                                         ;   7D22 FD22 C A2 00           F:009032
-L_3_7D24:
-  LDA a:R_0088,X                                  ;   7D24 FD24 C BD 88 00        F:009032
-  BMI B_3_7D36                                    ;   7D27 FD27 C 30 0D           F:009032
-  BEQ B_3_7D3A                                    ;   7D29 FD29 C F0 0F           F:009032
-  SEC                                             ;   7D2B FD2B . 38              
-  LDA R_07D8                                      ;   7D2C FD2C . AD D8 07        
-  SBC #$4                                         ;   7D2F FD2F . E9 04           
-  BCC B_3_7D36                                    ;   7D31 FD31 . 90 03           
-  STA R_07D8                                      ;   7D33 FD33 . 8D D8 07        
-B_3_7D36:
-  INX                                             ;   7D36 FD36 C E8              F:009032
-  JMP L_3_7D24                                    ;   7D37 FD37 C 4C 24 FD        F:009032
-
-B_3_7D3A:
-  LDX #$0                                         ;   7D3A FD3A C A2 00           F:009032
-L_3_7D3C:
-  LDA a:QuestionAnswerCopy,X                                  ;   7D3C FD3C C BD 68 00        F:009032
-  BMI B_3_7D4E                                    ;   7D3F FD3F C 30 0D           F:009032
-  BEQ B_3_7D52                                    ;   7D41 FD41 C F0 0F           F:009032
-  SEC                                             ;   7D43 FD43 C 38              F:009032
-  LDA R_07D8                                      ;   7D44 FD44 C AD D8 07        F:009032
-  SBC #$4                                         ;   7D47 FD47 C E9 04           F:009032
-  BCC B_3_7D4E                                    ;   7D49 FD49 C 90 03           F:009032
-  STA R_07D8                                      ;   7D4B FD4B C 8D D8 07        F:009032
-B_3_7D4E:
-  INX                                             ;   7D4E FD4E C E8              F:009032
-  JMP L_3_7D3C                                    ;   7D4F FD4F C 4C 3C FD        F:009032
-
-B_3_7D52:
-  LDA R_07D8                                      ;   7D52 FD52 C AD D8 07        F:009032
-  RTS                                             ;   7D55 FD55 C 60              F:009032
-
-L_3_7D56:
-  LDX #$0                                         ;   7D56 FD56 C A2 00           F:008982
-  LDY #$0                                         ;   7D58 FD58 C A0 00           F:008982
-L_3_7D5A:
-  LDA a:R_0048,Y                                  ;   7D5A FD5A C B9 48 00        F:008982
-  BEQ B_3_7DA7                                    ;   7D5D FD5D C F0 48           F:008982
-  STA R_07DA                                      ;   7D5F FD5F C 8D DA 07        F:008982
-  STY R_07D6                                      ;   7D62 FD62 C 8C D6 07        F:008982
-  LDA a:R_0049,Y                                  ;   7D65 FD65 C B9 49 00        F:008982
-  CMP #$48                                        ;   7D68 FD68 C C9 48           F:008982
-  BNE B_3_7D89                                    ;   7D6A FD6A C D0 1D           F:008982
-  INC R_07D6                                      ;   7D6C FD6C C EE D6 07        F:064129
-  LDY #$0                                         ;   7D6F FD6F C A0 00           F:064129
-  BEQ B_3_7D75                                    ;   7D71 FD71 C F0 02           F:064129
-B_3_7D73:
-  INY                                             ;   7D73 FD73 C C8              F:064129
-  INY                                             ;   7D74 FD74 C C8              F:064129
-B_3_7D75:
-  LDA D_3_7E51,Y                                  ;   7D75 FD75 C B9 51 FE        F:064129
-  BEQ B_3_7DA0                                    ;   7D78 FD78 C F0 26           F:064129
-  CMP R_07DA                                      ;   7D7A FD7A C CD DA 07        F:064129
-  BNE B_3_7D73                                    ;   7D7D FD7D C D0 F4           F:064129
-  LDA $FE52,Y                                     ;   7D7F FD7F . B9 52 FE        
-  STA a:QuestionAnswerCopy,X                                  ;   7D82 FD82 . 9D 68 00        
-  INX                                             ;   7D85 FD85 . E8              
-  JMP $FDA0                                       ;   7D86 FD86 . 4C A0 FD        
-
-B_3_7D89:
-  LDY #$0                                         ;   7D89 FD89 C A0 00           F:008982
-  BEQ B_3_7D8F                                    ;   7D8B FD8B C F0 02           F:008982
-B_3_7D8D:
-  INY                                             ;   7D8D FD8D C C8              F:008982
-  INY                                             ;   7D8E FD8E C C8              F:008982
-B_3_7D8F:
-  LDA D_3_7E18,Y                                  ;   7D8F FD8F C B9 18 FE        F:008982
-  BEQ B_3_7DA0                                    ;   7D92 FD92 C F0 0C           F:008982
-  CMP R_07DA                                      ;   7D94 FD94 C CD DA 07        F:008982
-  BNE B_3_7D8D                                    ;   7D97 FD97 C D0 F4           F:008982
-  LDA D_3_7E19,Y                                  ;   7D99 FD99 C B9 19 FE        F:008982
-  STA a:QuestionAnswerCopy,X                                  ;   7D9C FD9C C 9D 68 00        F:008982
-  INX                                             ;   7D9F FD9F C E8              F:008982
-B_3_7DA0:
-  LDY R_07D6                                      ;   7DA0 FDA0 C AC D6 07        F:008982
-  INY                                             ;   7DA3 FDA3 C C8              F:008982
-  JMP L_3_7D5A                                    ;   7DA4 FDA4 C 4C 5A FD        F:008982
-
-B_3_7DA7:
-  LDA #$0                                         ;   7DA7 FDA7 C A9 00           F:008982
-  STA a:QuestionAnswerCopy,X                                  ;   7DA9 FDA9 C 9D 68 00        F:008982
-B_3_7DAC:
-  LDA a:QuestionAnswerCopy                                    ;   7DAC FDAC C AD 68 00        F:008982
-  CMP #$20                                        ;   7DAF FDAF C C9 20           F:008982
-  BNE B_3_7DC0                                    ;   7DB1 FDB1 C D0 0D           F:008982
-  LDX #$0                                         ;   7DB3 FDB3 . A2 00           
-B_3_7DB5:
-  INX                                             ;   7DB5 FDB5 . E8              
-  LDA a:QuestionAnswerCopy,X                                  ;   7DB6 FDB6 . BD 68 00        
-  STA a:QuestionAnswerCopy-1,X                                  ;   7DB9 FDB9 . 9D 67 00        
-  BNE B_3_7DB5                                    ;   7DBC FDBC . D0 F7           
-  BEQ B_3_7DAC                                    ;   7DBE FDBE . F0 EC           
-B_3_7DC0:
-  LDX #$FF                                        ;   7DC0 FDC0 C A2 FF           F:008982
-B_3_7DC2:
-  INX                                             ;   7DC2 FDC2 C E8              F:008982
-  LDA a:QuestionAnswerCopy,X                                  ;   7DC3 FDC3 C BD 68 00        F:008982
-  BEQ B_3_7DCD                                    ;   7DC6 FDC6 C F0 05           F:008982
-  CMP a:R_0069,X                                  ;   7DC8 FDC8 C DD 69 00        F:008982
-  BNE B_3_7DC2                                    ;   7DCB FDCB C D0 F5           F:008982
-B_3_7DCD:
-  DEX                                             ;   7DCD FDCD C CA              F:008982
-  BEQ B_3_7DDF                                    ;   7DCE FDCE C F0 0F           F:008982
-  LDA a:QuestionAnswerCopy,X                                  ;   7DD0 FDD0 C BD 68 00        F:008982
-  CMP #$20                                        ;   7DD3 FDD3 C C9 20           F:008982
-  BNE B_3_7DDF                                    ;   7DD5 FDD5 C D0 08           F:008982
-  LDA #$0                                         ;   7DD7 FDD7 . A9 00           
-  STA a:QuestionAnswerCopy,X                                  ;   7DD9 FDD9 . 9D 68 00        
-  JMP $FDCD                                       ;   7DDC FDDC . 4C CD FD        
-
-B_3_7DDF:
-  LDX #$FF                                        ;   7DDF FDDF C A2 FF           F:008982
-B_3_7DE1:
-  INX                                             ;   7DE1 FDE1 C E8              F:008982
-  LDA a:QuestionAnswerCopy,X                                  ;   7DE2 FDE2 C BD 68 00        F:008982
-  BEQ B_3_7DFB                                    ;   7DE5 FDE5 C F0 14           F:008982
-  CMP a:R_0069,X                                  ;   7DE7 FDE7 C DD 69 00        F:008982
-  BNE B_3_7DE1                                    ;   7DEA FDEA C D0 F5           F:008982
-  TXA                                             ;   7DEC FDEC C 8A              F:009002
-  TAY                                             ;   7DED FDED C A8              F:009002
-B_3_7DEE:
-  LDA a:R_0069,Y                                  ;   7DEE FDEE C B9 69 00        F:009002
-  STA a:QuestionAnswerCopy,Y                                  ;   7DF1 FDF1 C 99 68 00        F:009002
-  INY                                             ;   7DF4 FDF4 C C8              F:009002
-  CMP #$0                                         ;   7DF5 FDF5 C C9 00           F:009002
-  BNE B_3_7DEE                                    ;   7DF7 FDF7 C D0 F5           F:009002
-  BEQ B_3_7DAC                                    ;   7DF9 FDF9 C F0 B1           F:009002
-B_3_7DFB:
-  LDX #$FF                                        ;   7DFB FDFB C A2 FF           F:008982
-B_3_7DFD:
-  INX                                             ;   7DFD FDFD C E8              F:008982
-  LDA a:QuestionAnswerCopy,X                                  ;   7DFE FDFE C BD 68 00        F:008982
-  BNE B_3_7DFD                                    ;   7E01 FE01 C D0 FA           F:008982
-  DEX                                             ;   7E03 FE03 C CA              F:008982
-  BMI B_3_7E17                                    ;   7E04 FE04 C 30 11           F:008982
-  BEQ B_3_7E17                                    ;   7E06 FE06 C F0 0F           F:008982
-  LDA a:QuestionAnswerCopy,X                                  ;   7E08 FE08 C BD 68 00        F:008982
-  CMP #$55                                        ;   7E0B FE0B C C9 55           F:008982
-  BNE B_3_7E17                                    ;   7E0D FE0D C D0 08           F:008982
-  LDA #$0                                         ;   7E0F FE0F C A9 00           F:008982
-  STA a:QuestionAnswerCopy,X                                  ;   7E11 FE11 C 9D 68 00        F:008982
-  JMP B_3_7DAC                                    ;   7E14 FE14 C 4C AC FD        F:008982
-
-B_3_7E17:
-  RTS                                             ;   7E17 FE17 C 60              F:008982
-
-D_3_7E18:
-.byte $41                                         ;   7E18 FE18 D        A        F:008982
-D_3_7E19:
-.byte $55                                         ;   7E19 FE19 D        U        F:009002
-.byte $45,$55,$49,$55,$4F                         ;   7E1A FE1A DDDDD    EUIUO    F:008982
-.byte $55                                         ;   7E1F FE1F D        U        F:025577
-.byte $55                                         ;   7E20 FE20 D        U        F:008982
-.byte $55                                         ;   7E21 FE21 D        U        F:024557
-.byte $59                                         ;   7E22 FE22 D        Y        F:008982
-.byte $55                                         ;   7E23 FE23 D        U        F:026790
-.byte $57                                         ;   7E24 FE24 D        W        F:008982
-.byte $55                                         ;   7E25 FE25 D        U        F:052559
-.byte $27                                         ;   7E26 FE26 D        '        F:008982
-.byte $55                                         ;   7E27 FE27 .        U        
-.byte $42                                         ;   7E28 FE28 D        B        F:008982
-.byte $42                                         ;   7E29 FE29 D        B        F:050703
-.byte $46                                         ;   7E2A FE2A D        F        F:008982
-.byte $42                                         ;   7E2B FE2B D        B        F:025577
-.byte $50                                         ;   7E2C FE2C D        P        F:008982
-.byte $42                                         ;   7E2D FE2D D        B        F:028597
-.byte $56                                         ;   7E2E FE2E D        V        F:008982
-.byte $42                                         ;   7E2F FE2F .        B        
-.byte $53                                         ;   7E30 FE30 D        S        F:008982
-.byte $53                                         ;   7E31 FE31 D        S        F:024557
-.byte $5A                                         ;   7E32 FE32 D        Z        F:008982
-.byte $53                                         ;   7E33 FE33 .        S        
-.byte $58                                         ;   7E34 FE34 D        X        F:008982
-.byte $53                                         ;   7E35 FE35 .        S        
-.byte $44                                         ;   7E36 FE36 D        D        F:008982
-.byte $44                                         ;   7E37 FE37 D        D        F:029657
-.byte $54                                         ;   7E38 FE38 D        T        F:008982
-.byte $44                                         ;   7E39 FE39 D        D        F:030123
-.byte $43,$4A                                     ;   7E3A FE3A DD       CJ       F:008982
-.byte $47                                         ;   7E3C FE3C D        G        F:009002
-.byte $4A                                         ;   7E3D FE3D D        J        F:024557
-.byte $4A                                         ;   7E3E FE3E D        J        F:009002
-.byte $4A                                         ;   7E3F FE3F D        J        F:040583
-.byte $4B                                         ;   7E40 FE40 D        K        F:009002
-.byte $4A                                         ;   7E41 FE41 D        J        F:054078
-.byte $51                                         ;   7E42 FE42 D        Q        F:009002
-.byte $4A                                         ;   7E43 FE43 .        J        
-.byte $4D,$4D,$4E                                 ;   7E44 FE44 DDD      MMN      F:009002
-.byte $4E                                         ;   7E47 FE47 D        N        F:028614
-.byte $4C                                         ;   7E48 FE48 D        L        F:009002
-.byte $4C                                         ;   7E49 FE49 D        L        F:025577
-.byte $52,$52,$2A                                 ;   7E4A FE4A DDD      RR*      F:009002
-.byte $2A                                         ;   7E4D FE4D .        *        
-.byte $20,$20                                     ;   7E4E FE4E DD                F:009002
-.byte $00                                         ;   7E50 FE50 D        ?        F:039323
-D_3_7E51:
-.byte $50                                         ;   7E51 FE51 D        P        F:064129
-.byte $42                                         ;   7E52 FE52 .        B        
-.byte $43                                         ;   7E53 FE53 D        C        F:064129
-.byte $4B                                         ;   7E54 FE54 .        K        
-.byte $00                                         ;   7E55 FE55 D        ?        F:064129
+; any of these characters can be followed by an optional H which is ignored
+LettersWithOptionalH:
+.byte "P", "B" ; PH is replaced by BH
+.byte "C", "K" ; CH is replaced by KH
+.byte $0
 
 CopyAnswerToScratch:
   ldy #$0                                         ; clear first byte of scratch
@@ -14247,7 +14174,6 @@ CopyNextChar:
   lda #$0                                         ; and add a null byte after
   sta AnswerScratchSpace+1,y                      ;
   rts                                             ; done!
-
 @CheckForOptionalChar:
   cmp #'a'                                        ; check if we are inside range of optional characters
   bcc @CheckForAsterisk                           ; if too low - skip ahead
@@ -14259,7 +14185,7 @@ CopyNextChar:
   lda #'/'                                        ;
   sta AnswerScratchSpace,y                        ; then /
   iny                                             ;
-  lda a:QuestionAnswerCopy-1,x                      ; then take the optional character
+  lda a:QuestionAnswerCopy-1,x                    ; then take the optional character
   sec                                             ;
   sbc #$20                                        ; uppercase it
   sta AnswerScratchSpace,y                        ; and write that into the group
@@ -14268,7 +14194,6 @@ CopyNextChar:
   sta AnswerScratchSpace,y                        ; then write )
   iny                                             ;
   jmp CopyNextChar                                ; and we're finished with this character
-
 @CheckForAsterisk:
   cmp #'*'                                        ; is this character an asterisk?
   bne @CheckForOptionalSpace                      ; no - skip ahead
@@ -14291,7 +14216,6 @@ CopyNextChar:
   sta AnswerScratchSpace,y                        ; finally add closing )
   iny                                             ; and advance to the next char
   jmp CopyNextChar                                ;
-
 @CheckForOptionalSpace:
   cmp #'+'                                        ; check for the optional space character
   bne @CheckForOptionalGroup                      ; if not found - skip ahead
@@ -14308,7 +14232,6 @@ CopyNextChar:
   sta AnswerScratchSpace,y                        ;
   iny                                             ;
   jmp CopyNextChar                                ; go to next char!
-
 @CheckForOptionalGroup:
   cmp #'['                                        ; check for optional group character
   bne @CheckForEndOfGroup                         ; not found - skip ahead
@@ -14319,7 +14242,6 @@ CopyNextChar:
   sta AnswerScratchSpace,y                        ;
   iny                                             ;
   jmp CopyNextChar                                ; go to next char!
-
 @CheckForEndOfGroup:
   cmp #')'                                        ; check for closing paren
   beq :+                                          ; if found - skip to process
@@ -14329,97 +14251,97 @@ CopyNextChar:
   sta AnswerScratchSpace,Y                        ;
   iny                                             ;
   jmp CopyNextChar                                ; go to next char!
-
 @CopyText:
   sta AnswerScratchSpace,y                        ; reached a regular character, copy it over
   iny                                             ;
   jmp CopyNextChar                                ; and go to next char!
 
-L_3_7F0E:
-  LDA ValidationCurrentAnswer                     ;   7F0E FF0E C AD CF 07        F:013406
-  STA R_07D5                                      ;   7F11 FF11 C 8D D5 07        F:013406
-  STX R_000F                                      ;   7F14 FF14 C 86 0F           F:013406
-  LDY R_07B9,X                                    ;   7F16 FF16 C BC B9 07        F:013406
-  JSR L_3_7F8F                                    ;   7F19 FF19 C 20 8F FF        F:013406
-  CMP #$C                                         ;   7F1C FF1C C C9 0C           F:013406
-  BCC B_3_7F54                                    ;   7F1E FF1E C 90 34           F:013406
-L_3_7F20:
-  LDA #$0                                         ;   7F20 FF20 C A9 00           F:009583
-  STA R_07D3                                      ;   7F22 FF22 C 8D D3 07        F:009583
-  LDA #$FF                                        ;   7F25 FF25 C A9 FF           F:009583
-  STA R_07D4                                      ;   7F27 FF27 C 8D D4 07        F:009583
-  LDX #$0                                         ;   7F2A FF2A C A2 00           F:009583
-B_3_7F2C:
-  LDA R_06A5,X                                    ;   7F2C FF2C C BD A5 06        F:009583
-  BEQ B_3_7F48                                    ;   7F2F FF2F C F0 17           F:009583
-  LDY R_07B9,X                                    ;   7F31 FF31 C BC B9 07        F:009583
-  JSR L_3_7F8F                                    ;   7F34 FF34 C 20 8F FF        F:009583
-  BEQ B_3_7F48                                    ;   7F37 FF37 C F0 0F           F:009583
-  CMP R_07D3                                      ;   7F39 FF39 C CD D3 07        F:009583
-  BCC B_3_7F48                                    ;   7F3C FF3C C 90 0A           F:009583
-  CMP #$C                                         ;   7F3E FF3E C C9 0C           F:009583
-  BCS B_3_7F48                                    ;   7F40 FF40 C B0 06           F:009583
-  STA R_07D3                                      ;   7F42 FF42 C 8D D3 07        F:009583
-  STX R_07D4                                      ;   7F45 FF45 C 8E D4 07        F:009583
-B_3_7F48:
-  INX                                             ;   7F48 FF48 C E8              F:009583
-  CPX #$14                                        ;   7F49 FF49 C E0 14           F:009583
-  BCC B_3_7F2C                                    ;   7F4B FF4B C 90 DF           F:009583
-  LDX R_07D4                                      ;   7F4D FF4D C AE D4 07        F:009583
-  BPL B_3_7F54                                    ;   7F50 FF50 C 10 02           F:009583
-  LDX R_000F                                      ;   7F52 FF52 . A6 0F           
-B_3_7F54:
-  LDY R_07B9,X                                    ;   7F54 FF54 C BC B9 07        F:009583
-  LDX #$0                                         ;   7F57 FF57 C A2 00           F:009583
-B_3_7F59:
-  LDA AnswerScratchSpace,Y                        ;   7F59 FF59 C B9 B9 06        F:009583
-  CMP #$2A                                        ;   7F5C FF5C C C9 2A           F:009583
-  BEQ B_3_7F68                                    ;   7F5E FF5E C F0 08           F:009583
-  STA R_07DC,X                                    ;   7F60 FF60 C 9D DC 07        F:009583
-  CMP #$0                                         ;   7F63 FF63 C C9 00           F:009583
-  BEQ B_3_7F72                                    ;   7F65 FF65 C F0 0B           F:009583
-  INX                                             ;   7F67 FF67 C E8              F:009583
-B_3_7F68:
-  INY                                             ;   7F68 FF68 C C8              F:009583
-  CPX #$B                                         ;   7F69 FF69 C E0 0B           F:009583
-  BCC B_3_7F59                                    ;   7F6B FF6B C 90 EC           F:009583
-  LDA #$0                                         ;   7F6D FF6D C A9 00           F:021926
-  STA R_07DC,X                                    ;   7F6F FF6F C 9D DC 07        F:021926
-B_3_7F72:
-  RTS                                             ;   7F72 FF72 C 60              F:009583
+ValidationSuccessful:
+  lda ValidationCurrentAnswer                     ; get the answer number that was matched
+  sta AnswerValidationResult                      ; and copy it to the output result
+  stx ValidationMatchedVariant                    ; store the variant that was matched
+  ldy AnswerVariantOffset,x                       ; and find its offset in the answer scratch space
+  jsr GetAnswerLength                             ; then check the length of the validated answer
+  cmp #12                                         ; is it 12+ characters long?
+  bcc CreateScoreboardAnswer_CopyText             ; no - just copy this answer over, otherwise start checking variants
 
-L_3_7F73:
-  JSR L_3_79EE                                    ;   7F73 FF73 C 20 EE F9        F:009582
-B_3_7F76:
-  JSR L_3_7A1C                                    ;   7F76 FF76 C 20 1C FA        F:009582
-  BCS B_3_7F76                                    ;   7F79 FF79 C B0 FB           F:009582
-  LDX #$0                                         ;   7F7B FF7B C A2 00           F:009583
-B_3_7F7D:
-  LDA R_06A5,X                                    ;   7F7D FF7D C BD A5 06        F:009583
-  BNE B_3_7F85                                    ;   7F80 FF80 C D0 03           F:009583
-  INX                                             ;   7F82 FF82 . E8              
-  BNE B_3_7F7D                                    ;   7F83 FF83 . D0 F8           
-B_3_7F85:
-  STX R_000F                                      ;   7F85 FF85 C 86 0F           F:009583
-  LDX #$0                                         ;   7F87 FF87 C A2 00           F:009583
-  STX R_07D5                                      ;   7F89 FF89 C 8E D5 07        F:009583
-  JMP L_3_7F20                                    ;   7F8C FF8C C 4C 20 FF        F:009583
+; checks each answer variant to find one that will work on the scoreboard
+CreateScoreboardAnswer:
+  lda #$0                                         ; clear starting state
+  sta CreateScoreboardAnswer_Length               ;
+  lda #$FF                                        ;
+  sta CreateScoreboardAnswer_Index                ;
+  ldx #$0                                         ; start checking from first variant
+CreateScoreboardAnswer_CheckVariant:
+  lda AnswerVariantState,x                        ; check variant state
+  beq @NextVariant                                ; if it's unused, skip to next variant
+  ldy AnswerVariantOffset,x                       ; get scratch space offset of variant
+  jsr GetAnswerLength                             ; and check answer length
+  beq @NextVariant                                ; if 0 length, skip to next
+  cmp CreateScoreboardAnswer_Length               ; otherwise compare it against the temp variant length
+  bcc @NextVariant                                ; if its shorter, skip to next
+  cmp #12                                         ; check if answer is 12+ characters
+  bcs @NextVariant                                ; if so, skip to next
+  sta CreateScoreboardAnswer_Length               ; otherwise store this as the variant to show
+  stx CreateScoreboardAnswer_Index                ;
+@NextVariant:
+  inx                                             ; advance to next variant
+  cpx #MaxValidationVariants                      ; have we checked all variants?
+  bcc CreateScoreboardAnswer_CheckVariant         ; no - keep looping
+  ldx CreateScoreboardAnswer_Index                ; check which variant was selected
+  bpl CreateScoreboardAnswer_CopyText             ; if it's valid, skip ahead
+  ldx ValidationMatchedVariant                    ; if it's invalid, use the variant that was supplied by the user
 
-L_3_7F8F:
-  LDA #$0                                         ;   7F8F FF8F C A9 00           F:009583
-  STA R_000E                                      ;   7F91 FF91 C 85 0E           F:009583
-B_3_7F93:
-  LDA AnswerScratchSpace,Y                        ;   7F93 FF93 C B9 B9 06        F:009583
-  CMP #$0                                         ;   7F96 FF96 C C9 00           F:009583
-  BEQ B_3_7FA3                                    ;   7F98 FF98 C F0 09           F:009583
-  INY                                             ;   7F9A FF9A C C8              F:009583
-  CMP #$2A                                        ;   7F9B FF9B C C9 2A           F:009583
-  BEQ B_3_7F93                                    ;   7F9D FF9D C F0 F4           F:009583
-  INC R_000E                                      ;   7F9F FF9F C E6 0E           F:009583
-  BNE B_3_7F93                                    ;   7FA1 FFA1 C D0 F0           F:009583
-B_3_7FA3:
-  LDA R_000E                                      ;   7FA3 FFA3 C A5 0E           F:009583
-  RTS                                             ;   7FA5 FFA5 C 60              F:009583
+CreateScoreboardAnswer_CopyText:
+  ldy AnswerVariantOffset,x                       ; get offset of variant to show
+  ldx #$0                                         ; reset X
+@ContinueCopying:
+  lda AnswerScratchSpace,y                        ; check character at X
+  cmp #'*'                                        ; have we reached an asterisk?
+  beq @SkipCharacter                              ; yes - skip character
+  sta ValidationScoreboardText,x                  ; otherwise copy to output
+  cmp #$0                                         ; was the character null?
+  beq @Done                                       ; yes - full answer copied, branch to exit
+  inx                                             ; advance character
+@SkipCharacter:
+  iny                                             ; advance to next character to check
+  cpx #11                                         ; have we reached the max scoreboard display characters?
+  bcc @ContinueCopying                            ; no - keep looping
+  lda #$0                                         ; yes - mark last character as null
+  sta ValidationScoreboardText,x                  ;
+@Done:
+  rts                                             ; and we are done!
+
+AutocompleteAnswer:
+  jsr PrepareAnswerValidation                     ; copy answer data over to scratch space and initialize state
+: jsr CreateAnswerVariants                        ; create all variants of answer
+  bcs :-                                          ; loop until done
+  ldx #$0                                         ; prepare to check each state
+: lda AnswerVariantState,x                        ; check answer variant
+  bne @VariantFound                               ; branch ahead if valid variant found
+  inx                                             ; otherwise advance to next variant
+  bne :-                                          ; and loop
+@VariantFound:
+  stx ValidationMatchedVariant                    ; store selected variant
+  ldx #$0                                         ; and clear current result
+  stx AnswerValidationResult                      ;
+  jmp CreateScoreboardAnswer                      ; then copy some answer to the scoreboard
+
+GetAnswerLength:
+  @Tmp = R_000E
+  lda #$0                                         ; clear temp value
+  sta @Tmp                                        ;
+: lda AnswerScratchSpace,y                        ; check next character
+  cmp #0                                          ; and do a silly null check
+  beq @Done                                       ; if null - skip to end
+  iny                                             ; otherwise skip to next character
+  cmp #'*'                                        ; ignore any asterisks
+  beq :-                                          ;
+  inc @Tmp                                        ; otherwise increment temp value
+  bne :-                                          ; and keep counting
+@Done:
+  lda @Tmp                                        ; load temp value
+  rts                                             ; and we're done!
 
 .byte $CD,$20,$00,$A0,$00,$9A,$F0,$FE             ;   7FA6 FFA6 ........ ? ?????? 
 .byte $1D,$F0,$47,$01,$D0,$1C,$56,$01             ;   7FAE FFAE ........ ??G???V? 
