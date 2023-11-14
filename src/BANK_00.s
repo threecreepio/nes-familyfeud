@@ -313,7 +313,7 @@ L_0_0279:
   STA PpuAddr_2006                                ;    285 8285 C 8D 06 20        F:012694
   LDA IsInFastMoney                                      ;    288 8288 C AD 43 05        F:012694
   BNE B_0_02B4                                    ;    28B 828B C D0 27           F:012694
-  LDA R_0384,X                                    ;    28D 828D C BD 84 03        F:012694
+  LDA AnswerCompletedState,X                                    ;    28D 828D C BD 84 03        F:012694
   BNE B_0_02B4                                    ;    290 8290 C D0 22           F:012694
   JSR L_0_033B                                    ;    292 8292 C 20 3B 83        F:033565
   LDA D_0_039F                                    ;    295 8295 C AD 9F 83        F:033565
@@ -2297,7 +2297,7 @@ B_0_11D6:
   CMP R_04B9                                      ;   11EF 91EF C CD B9 04        F:010400
   BEQ B_0_120D                                    ;   11F2 91F2 C F0 19           F:010400
   LDY R_04B9                                      ;   11F4 91F4 C AC B9 04        F:010400
-  LDA R_0384,Y                                    ;   11F7 91F7 C B9 84 03        F:010400
+  LDA AnswerCompletedState,Y                                    ;   11F7 91F7 C B9 84 03        F:010400
   BEQ B_0_1208                                    ;   11FA 91FA C F0 0C           F:010400
   PLP                                             ;   11FC 91FC . 28              
   JSR L_0_124B                                    ;   11FD 91FD . 20 4B 92        
@@ -2308,7 +2308,7 @@ B_0_11D6:
 
 B_0_1208:
   LDA #$1                                         ;   1208 9208 C A9 01           F:010400
-  STA R_0384,Y                                    ;   120A 920A C 99 84 03        F:010400
+  STA AnswerCompletedState,Y                                    ;   120A 920A C 99 84 03        F:010400
 B_0_120D:
   LDA #$3                                         ;   120D 920D C A9 03           F:010400
   JSR SetNMIRoutine                                    ;   120F 920F C 20 C7 CA        F:010400
@@ -3592,7 +3592,7 @@ B_0_1C1D:
   STX R_04B9                                      ;   1C1D 9C1D C 8E B9 04        F:009033
   CPX #$FF                                        ;   1C20 9C20 C E0 FF           F:009033
   BEQ B_0_1C3E                                    ;   1C22 9C22 C F0 1A           F:009033
-  LDA R_0384,X                                    ;   1C24 9C24 C BD 84 03        F:009583
+  LDA AnswerCompletedState,X                                    ;   1C24 9C24 C BD 84 03        F:009583
   BNE B_0_1C3C                                    ;   1C27 9C27 C D0 13           F:009583
   TXA                                             ;   1C29 9C29 C 8A              F:009583
   PHA                                             ;   1C2A 9C2A C 48              F:009583
@@ -4492,10 +4492,10 @@ B_1_2297:
 B_1_22A1:
   INC R_04B9                                      ;   22A1 A2A1 C EE B9 04        F:034572
   LDX R_04B9                                      ;   22A4 A2A4 C AE B9 04        F:034572
-  LDA R_0384,X                                    ;   22A7 A2A7 C BD 84 03        F:034572
+  LDA AnswerCompletedState,X                                    ;   22A7 A2A7 C BD 84 03        F:034572
   BNE B_1_22A1                                    ;   22AA A2AA C D0 F5           F:034572
   LDA #$1                                         ;   22AC A2AC C A9 01           F:034572
-  STA R_0384,X                                    ;   22AE A2AE C 9D 84 03        F:034572
+  STA AnswerCompletedState,X                                    ;   22AE A2AE C 9D 84 03        F:034572
   JSR AutocompleteAnswer                                    ;   22B1 A2B1 C 20 73 FF        F:034572
   JSR B_0_1C46                                    ;   22B4 A2B4 C 20 46 9C        F:034573
   LDA R_0391                                      ;   22B7 A2B7 C AD 91 03        F:034696
@@ -4944,7 +4944,7 @@ B_1_268A:
   STY R_0546                                      ;   26B6 A6B6 C 8C 46 05        F:041643
   STY R_0547                                      ;   26B9 A6B9 C 8C 47 05        F:041643
   STY R_0548                                      ;   26BC A6BC C 8C 48 05        F:041643
-  STY R_0384                                      ;   26BF A6BF C 8C 84 03        F:041643
+  STY AnswerCompletedState                                      ;   26BF A6BF C 8C 84 03        F:041643
   STY R_0385                                      ;   26C2 A6C2 C 8C 85 03        F:041643
   STY R_0386                                      ;   26C5 A6C5 C 8C 86 03        F:041643
   STY R_0387                                      ;   26C8 A6C8 C 8C 87 03        F:041643
@@ -6371,7 +6371,7 @@ RunTossupScene:
   LDX #$0                                         ;   34F2 B4F2 C A2 00           F:008266
   STX ActiveFamily                                ;   34F4 B4F4 C 86 0B           F:008266
   INX                                             ;   34F6 B4F6 C E8              F:008266
-  STX R_0384                                      ;   34F7 B4F7 C 8E 84 03        F:008266
+  STX AnswerCompletedState                                      ;   34F7 B4F7 C 8E 84 03        F:008266
   INX                                             ;   34FA B4FA C E8              F:008266
   STX ActiveScene                                 ;   34FB B4FB C 8E D3 04        F:008266
   JSR L_2_52B6                                    ;   34FE B4FE C 20 B6 D2        F:008266
@@ -6397,7 +6397,7 @@ RunTossupScene:
   LDX #$B                                         ;   3534 B534 C A2 0B           F:008272
 B_1_3536:
   LDA #$0                                         ;   3536 B536 C A9 00           F:008272
-  STA R_0384,X                                    ;   3538 B538 C 9D 84 03        F:008272
+  STA AnswerCompletedState,X                                    ;   3538 B538 C 9D 84 03        F:008272
   DEX                                             ;   353B B53B C CA              F:008272
   BPL B_1_3536                                    ;   353C B53C C 10 F8           F:008272
   STX ActiveFamily                                ;   353E B53E C 86 0B           F:008272
@@ -6601,7 +6601,7 @@ B_1_36C2:
   CMP R_04B9                                      ;   36F3 B6F3 C CD B9 04        F:009397
   BEQ B_1_3712                                    ;   36F6 B6F6 C F0 1A           F:009397
   LDY R_04B9                                      ;   36F8 B6F8 C AC B9 04        F:009828
-  LDA R_0384,Y                                    ;   36FB B6FB C B9 84 03        F:009828
+  LDA AnswerCompletedState,Y                                    ;   36FB B6FB C B9 84 03        F:009828
   BEQ B_1_370D                                    ;   36FE B6FE C F0 0D           F:009828
   JSR $B820                                       ;   3700 B700 . 20 20 B8        
   LDA #$7                                         ;   3703 B703 . A9 07           
@@ -6611,7 +6611,7 @@ B_1_36C2:
 
 B_1_370D:
   LDA #$1                                         ;   370D B70D C A9 01           F:009828
-  STA R_0384,Y                                    ;   370F B70F C 99 84 03        F:009828
+  STA AnswerCompletedState,Y                                    ;   370F B70F C 99 84 03        F:009828
 B_1_3712:
   JSR DelayUntilNMI                                    ;   3712 B712 C 20 F9 CA        F:009397
   JSR SoundSystemUpdate                                    ;   3715 B715 C 20 96 BA        F:009398
@@ -6874,7 +6874,7 @@ B_1_393D:
   TAX                                             ;   3940 B940 C AA              F:009582
   CMP R_000F                                      ;   3941 B941 C C5 0F           F:009582
   BCS B_1_393D                                    ;   3943 B943 C B0 F8           F:009582
-  LDA R_0384,X                                    ;   3945 B945 C BD 84 03        F:009582
+  LDA AnswerCompletedState,X                                    ;   3945 B945 C BD 84 03        F:009582
   BNE B_1_393D                                    ;   3948 B948 C D0 F3           F:009582
   JSR AdvanceRNG                                    ;   394A B94A C 20 BB 9B        F:009582
   LDA RNG1                                        ;   394D B94D C AD FA 01        F:009582
@@ -13425,9 +13425,9 @@ BeginAnswerValidation:
   stx a:AnswerValidationStage                     ; set strict mode validation
   stx $07D9                                       ; clear something - todo - unused?
   dex                                             ; set X to FF
-  stx AnswerValidationResult                      ; initialize to 'fail' result
-  lda #$80                                        ;   7908 F908 C A9 80           F:008943
-  STA FinalValidatorBestResult                                      ;   790A F90A C 8D D1 07        F:008943
+  stx AnswerValidationResult                      ; initialize 'fail' results
+  lda #$80                                        ;
+  sta FinalValidatorBestResult                    ; initialize 'fail' results
   lda #12                                         ; start at last possible answer (on the board of 12 answers)
   sta ValidationCurrentAnswer                     ;
   ldx UserAnswerInputLength                       ; check last answer character
@@ -14155,8 +14155,8 @@ LetterSwaps:
 
 ; any of these characters can be followed by an optional H which is ignored
 LettersWithOptionalH:
-.byte "P", "B" ; PH is replaced by BH
-.byte "C", "K" ; CH is replaced by KH
+.byte "P", "B" ; PH is replaced by B
+.byte "C", "K" ; CH is replaced by K
 .byte $0
 
 CopyAnswerToScratch:
